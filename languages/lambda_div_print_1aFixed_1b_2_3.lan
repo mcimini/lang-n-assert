@@ -1,0 +1,66 @@
+Type T ::= (int) | (float) | (arrow T T) | (unitt)
+Expression E ::= (num N) | (float F) | (div E E) | x | (abs T (x)E) | (app E E) | (unit) | (print S) | (seq E E) | (error) | (try E E)
+Value V ::= (num N) | (float F) | (abs T1 R2) | (unit)
+Error ::= (error)
+Context C ::= [] | (div C e) | (div v C) | (app C e) | (try C e) 
+ErrContext F ::= [] | (div F e) | (div v F) | (app F e) | (app v F) | (try F e). 
+
+
+[S-INT-FLOAT]
+(int) <: (float).
+
+[S-REFL]
+T <: T.
+
+[S-ARROW]
+(arrow T1 T2) <: (arrow T3 T4) <== T3 <: T1 /\ T2 <: T4.
+
+[T-INT] 
+Gamma |- (num N) : (int).
+
+[T-FLOAT] 
+Gamma |- (float F) : (float).
+
+[T-DIV]
+Gamma |- (div E1 E2) : (int) <== Gamma |- E1 : (int) /\ Gamma |- E2 : (int).
+
+[T-ABS] 
+Gamma |- (abs T1 R) : (arrow T1 T2) <== Gamma, x : T1 |- R : T2.
+
+[T-APP-BAD]
+Gamma |- (app E1 E2) : T2 <== Gamma |- E1 : (arrow T1 T2) /\ Gamma |- E2 : T3 /\ T1 <: T3.
+
+[T-UNITT] 
+Gamma |- (unit) : (unitt).
+
+[T-PRINT] 
+Gamma |- (print S) : (unitt).
+
+[T-UNITT] 
+Gamma |- (error) : T.
+
+[T-SEQ]
+Gamma |- (seq E1 E2) : T2 <== Gamma |- E1 : T1 /\ Gamma |- E2 : T2.
+
+[T-TRY]
+Gamma |- (try E1 E2) : T <== Gamma |- E1 : T /\ Gamma |- E2 : T.
+
+[BETA]
+(app (abs T E) V), S --> E[V/x], S <== value V.
+
+[SEQ]
+(seq V E), S --> E, S <== value V.
+
+[DIV]
+(div (float F1) (float F2)), S --> (float F3), S <== (division F1 F2 F3). 
+
+[PRINT]
+(print S1), S2 --> (unit), S3 <== (concat S1 S2 S3). 
+
+[TRY]
+(try V E), S --> V, S <== value V.
+
+[ERR]
+(try (error) E), S --> E, S. 
+
+
