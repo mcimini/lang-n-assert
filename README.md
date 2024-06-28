@@ -112,12 +112,13 @@ output: <b>Proof not found</b>
 
 
 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant after we have added the evaluation context <b>(v E)</b>.   
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
-
+```
 output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation (textual representation)</a>
 
 
