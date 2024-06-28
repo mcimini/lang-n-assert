@@ -85,7 +85,7 @@ Proof derivations are printed out in a textual representation. <a href="tests/pr
 The following tries to derive that call-by-name parameter passing does not duplicate effects.   
 
 ./lna 'true' lambda_div_print_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
-
+```
 output: <b>Proof not found</b>
 
 
