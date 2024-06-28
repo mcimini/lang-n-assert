@@ -63,7 +63,7 @@ The folder "languages" contains language definitions, including:
 <li> <b>lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan</b>: Same as previous .lan but where issue 3 is fixed, that is, all the issues above are fixed. 
 </ul>
 
-##Assertions: 
+## Assertions: 
 Reference guide: See the paper associated with the tool. (<i>Coming Soon</i>)
 
 The following are examples of assertions and their meaning:  
