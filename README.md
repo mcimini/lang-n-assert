@@ -90,22 +90,24 @@ output: <b>Proof not found</b>
 
 
 
+```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that the ordinary beta-reduction (call-by-value) does not duplicate effects.   
 
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
-
+```
 output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation (textual representation)</a>
 
 
 
+```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant, but the language definition lacks evaluation context <b>(v E)</b>.   
 
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
-
+```
 output: <b>Proof not found</b>
 
 
@@ -120,45 +122,47 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof der
 
 
 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that the language lets <b>try</b> handle the error at its first argument, but the error context <b>try F with e</b> may prevent that.     
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
-
+```
 output: <b>Proof not found</b>
 
 
 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
 The following tries to derive that the language lets <b>try</b> handle the error at its first argument after we have removed the error context <b>try F with e</b>. 
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
-
+```
 output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation (textual representation)</a>
 
 
 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, but the typing rule is incorrect and checks <b>T_1 <: T_3</b> rather than <b>T_3 <: T_1</b>.
 
-
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
-
+```
 output: <b>Proof not found</b>
 
 
 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, after we have fixed the typing rule to check <b>T_3 <: T_1</b>.
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
-
+```
 output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation (textual representation)</a>
 
-```
 
 
