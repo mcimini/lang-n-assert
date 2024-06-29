@@ -2,8 +2,8 @@ Type T ::= (int) | (float) | (arrow T T) | (unitt)
 Expression E ::= (num N) | (float F) | (div E E) | x | (abs T (x)E) | (app E E) | (unit) | (print S) | (seq E E) | (error) | (try E E)
 Value V ::= (num N) | (float F) | (abs T (x)E) | (unit)
 Error ::= (error)
-Context C ::= [] | (div C e) | (div v C) | (app C e) | (app v C) | (try C e) 
-ErrContext F ::= [] | (div F e) | (div v F) | (app F e) | (app v F) | (try F e). 
+Context C ::= [] | (div C E) | (div V C) | (app C E) | (seq C E) | (try C E) 
+ErrContext F ::= [] | (div F E) | (div V F) | (app F E) | (app V F) | (seq F E) | (try F E). 
 
 
 [S-INT-FLOAT]
@@ -36,7 +36,7 @@ Gamma |- (unit) : (unitt).
 [T-PRINT] 
 Gamma |- (print S) : (unitt).
 
-[T-UNITT] 
+[T-ERROR] 
 Gamma |- (error) : T.
 
 [T-SEQ]
