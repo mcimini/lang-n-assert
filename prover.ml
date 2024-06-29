@@ -21,6 +21,7 @@ let makeInductives (g : grammarLine) (metavar : string) : assertions =
 let args_of_source (r : rule) = term_getArguments (rule_getInputOfConclusion r) 
 let stateSource (f : formula) = List.nth (formula_getArguments f) 1 
 let lastOutput f = List.last (formula_getArguments f) 
+let reduction_has_state r = List.length (formula_getArguments (rule_getConclusion r)) > 2
 let stateTarget f = lastOutput f 
 let outputBeforeState r = List.nth (formula_getArguments (rule_getConclusion r)) 2
 
@@ -85,7 +86,7 @@ let makeContraResp (r : rule) (pre : assertions) : proof =
 (* last proof is always the first  *)
 let prove_grammarLine (l : (proof list)) (g : grammarLine) : proof list = 
 	match g with GrammarLine(_,option_var,_) -> 
-	if is_none option_var || (  not(get option_var = "C") &&  not(get option_var = "F")  ) then l 
+	if is_none option_var || (  not(get option_var = "C") &&  not(get option_var = "F") &&  not(get option_var = "V") &&  not(get option_var = "T")  ) then l 
 	else 
 	let startingPre = getLastAssertions l in 
 	let inductives = makeInductives g (get option_var) in (* Here inductiveEs may be empty *)
@@ -96,8 +97,8 @@ let prove_rule (l : (proof list)) (r : rule) : (proof list) =
 	let startingPre = getLastAssertions l in 
 	let ctxProof = makeCtx r startingPre in 
 	let errorHandlerProof = makeErr r (proof_getPost ctxProof) in 
-	let effProof = makeEff r (proof_getPost errorHandlerProof) in 
-	let noDupliProof = makeNoDupli r (proof_getPost effProof) in 
+	let effProof = if reduction_has_state r then makeEff r (proof_getPost errorHandlerProof) else errorHandlerProof in 
+	let noDupliProof = if reduction_has_state r then makeNoDupli r (proof_getPost effProof) else effProof in 
 	let contraProof = makeContra r (proof_getPost noDupliProof) in 
 	let contraRespProof = makeContraResp r (proof_getPost contraProof) in 
 	let post = proof_getPost contraRespProof in 

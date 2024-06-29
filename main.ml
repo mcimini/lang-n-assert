@@ -45,7 +45,7 @@ let () = match Array.to_list Sys.argv with
 							let proof = prove [pre] lan post in 
 							if is_some proof 
 								then (print_endline (print_proof (get proof)))
-								else print_endline "FALSE";
+								else print_endline "Proof not found";
 	| otherwise -> print_endline ("Command line error: example: ./lna pre file.lan post");
 
 
