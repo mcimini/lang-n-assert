@@ -163,7 +163,7 @@ The following tries to derive that the typing rule of function application respe
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation (textual representation)</a>
 
 ### Other tests 
 
