@@ -192,7 +192,6 @@ The following asks for a proof derivation that the grammar production for 'pair'
 
 ./lna 'true' pairs.lan 'Inductive(V,pair,)' 
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
-
 ```
 output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual representation)</a>
 
