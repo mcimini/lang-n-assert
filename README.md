@@ -177,9 +177,9 @@ Lang-n-assert can detect that lists are lazy by failing to find evaluation conte
 ./lna 'true' lists.lan 'Inductive(C,cons,2)'.
 ./lna 'true' lists.lan 'Inductive(C,cons,1,2)'.
 ```
-output: <b>Proof not found</b>
-output: <b>Proof not found</b>
-output: <b>Proof not found</b>
+output: <b>Proof not found</b>   
+output: <b>Proof not found</b>   
+output: <b>Proof not found</b>  
 
 
 
@@ -187,7 +187,7 @@ output: <b>Proof not found</b>
 -- on pairs.lan of the folder "languages" -- 
 
 This language definition contains lazy pairs. 
-Lang-n-assert can detect that pairs are lazy. To show another tests, we base our test on the fact that terms (pair E E) are values for lazy pairs rather than (pair V V). 
+Lang-n-assert can detect that pairs are lazy. To show a different test from the previous one, we base our test on the fact that terms (pair E E) are values for lazy pairs rather than (pair V V). 
 The following asks for a proof derivation that the grammar production for 'pair' in the grammar of values is not inductive. 
 
 ./lna 'true' pairs.lan 'Inductive(V,pair,)' 
