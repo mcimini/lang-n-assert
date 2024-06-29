@@ -1,0 +1,62 @@
+{ true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 
+2]) } 
+
+  preconditions  Value { true /\ Inductive(T, int, []) /\ Inductive(T, 
+times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) } 
+
+  preconditions  Context { true /\ Inductive(T, int, []) /\ Inductive(T, 
+times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ 
+Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-INT { ContraResp(T-INT, arrow) /\ true /\ Inductive(T, 
+int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ 
+Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) 
+} 
+
+ 
+---- (ITERATE)
+ preconditions  T-PAIR { ContraResp(T-PAIR, arrow) /\ ContraResp(T-INT, 
+arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ 
+Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) 
+/\ Inductive(C, snd, [1]) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-FST { ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, 
+arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ 
+Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, 
+[]) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-SND { ContraResp(T-SND, arrow) /\ ContraResp(T-FST, 
+arrow) /\ ContraResp(T-PAIR, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ 
+Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, 
+[]) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, 
+snd, [1]) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-FST { CtxCompliant(R-FST) /\ ContraResp(T-SND, arrow) /\ 
+ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, arrow) /\ ContraResp(T-INT, 
+arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ 
+Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) 
+/\ Inductive(C, snd, [1]) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-SND { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ 
+ContraResp(T-SND, arrow) /\ ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, 
+arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ 
+Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, 
+[]) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) }
+---- (LAN)
+{ true } (G,I) { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ 
+ContraResp(T-SND, arrow) /\ ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, 
+arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ 
+Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, 
+[]) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) }
+---- (CONSEQUENCE)
+{ true } (G,I) { Inductive(V, pair, []) }
