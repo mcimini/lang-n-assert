@@ -3,6 +3,8 @@
 Author: Matteo Cimini (matteo_cimini@uml.edu)
 
 <i>Language logics</i> are the counterpart of <i>program logics</i> that analyze programming languages rather than programs. 
+Statements have the form {P} X {Q} where P and Q are assertions and X, the subject of analysis, can be the entire language at hand or some of its components such as a piece of grammar, a typing rule, a reduction rule or other parts of the language definition. 
+
 
 <i>Language logics</i> are being proposed by this tool and its associated paper: <i>Coming Soon</i>. 
 
