@@ -1,0 +1,25 @@
+{ true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) } 
+
+  preconditions  Value { true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) } 
+
+  preconditions  Context { true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-INT { ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ABS { ContraResp(T-ABS, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-APP { ContraResp(T-APP, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) } 
+
+ 
+---- (ITERATE)
+ preconditions  BETA { NoDupli(BETA) /\ CtxCompliant(BETA) /\ ContraResp(T-APP, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) }
+---- (LAN)
+{ true } (G,I) { NoDupli(BETA) /\ CtxCompliant(BETA) /\ ContraResp(T-APP, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, abs, []) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) }
+---- (CONSEQUENCE)
+{ true } (G,I) { Inductive(T, arrow, [1; 2]) }
