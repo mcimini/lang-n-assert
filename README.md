@@ -198,7 +198,7 @@ output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual represent
 
 
 ```
--- on pairs.lan of the folder "languages" -- 
+-- on lambda_stlc.lan of the folder "languages" -- 
 
 Lang-n-assert can answer the question: 'Does my language contain inductive types?'. 
 It is enough to produce a proof for an assertion 'Inductive' for the metavariable T (of types) for a type constructor. 
