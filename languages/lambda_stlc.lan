@@ -1,5 +1,5 @@
 Type T ::= (int) | (arrow T T)
-Expression E ::= (num N) | (abs T (x)E) | (app E E) 
+Expression E ::= (num N) | x | (abs T (x)E) | (app E E) 
 Value V ::= (num N) | (abs T (x)E) 
 Context C ::= [] | (app C E) | (app V C).
 
