@@ -202,8 +202,9 @@ output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual represent
 
 Lang-n-assert can answer the question: 'Does my language contain inductive types?'. 
 It is enough to produce a proof for an assertion 'Inductive' for the metavariable T (of types) for a type constructor. 
+For example, the simply typed lambda-calculus does have inductive types due to the function type: 
 
-./lna 'true' pairs.lan 'Inductive(T,times,1,2)'.
+./lna 'true' lambda_stlc.lan 'Inductive(T,arrow,1,2)'
 ```
-output: <a href="tests/pairs_inductiveTypes.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation (textual representation)</a>
 
