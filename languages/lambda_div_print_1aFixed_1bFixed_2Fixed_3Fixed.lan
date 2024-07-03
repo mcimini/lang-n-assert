@@ -9,8 +9,14 @@ ErrContext F ::= [] | (div F E) | (div V F) | (app F E) | (app V F) | (seq F E).
 [S-INT-FLOAT]
 (int) <: (float).
 
-[S-REFL]
-T <: T.
+[S-REFL-INT]
+(int) <: (int).
+
+[S-REFL-FLOAT]
+(float) <: (float).
+
+[S-REFL-UNIT]
+(unitt) <: (unitt).
 
 [S-ARROW]
 (arrow T1 T2) <: (arrow T3 T4) <== T3 <: T1 /\ T2 <: T4.
