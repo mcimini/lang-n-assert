@@ -1,4 +1,6 @@
-This is an example with 
+## Proof derivations are printed out in a textual representation. 
+
+Below, we describe these proof derivations through the example of 
 
 <pre>
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)' 
