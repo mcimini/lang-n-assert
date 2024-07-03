@@ -16,15 +16,16 @@ The root of the proof derivation is at the end of the file:
 { true } (G,I) { NoDupli(BETA) }
 ```
 
-As the language definition in <b>lambda_div_print_1aFixed_1b_2_3.lan</b> is lengthy, we do not display it between the pre and postcondition. 
+As the language definition in <b>lambda_div_print_1aFixed_1b_2_3.lan</b> is lengthy, we do not display it between the pre and postcondition.   
 We simply use <b>(G,I)</b> that represent the grammar <b>G</b> of the language and the inference system (set of inference rules) <b>I</b> of the language. 
 
 ```
 ---- (CONSEQUENCE) 
 ```
 
-is, essentially an horizontal line of an inference rule and says that we have applied the proof rule <b>(CONSEQUENCE)</b>. 
-Above <b>---- (CONSEQUENCE)</b> we have a statement that has derived all the assertions that the system have derived from G and I. With <b>(CONSEQUENCE)</b>, <b>NoDupli(BETA)</b> has been singled out from those assertions to derive the <b>{ true } (G,I) { NoDupli(BETA) }</b>. 
+is, essentially a horizontal line of an inference rule and says that we have applied the proof rule <b>(CONSEQUENCE)</b>.   
+Above <b>---- (CONSEQUENCE)</b> we have a statement that has derived all the assertions that the system have derived from G and I.    
+With <b>(CONSEQUENCE)</b>, <b>NoDupli(BETA)</b> has been singled out from those assertions to derive the <b>{ true } (G,I) { NoDupli(BETA) }</b>. 
 
 
 
@@ -42,13 +43,13 @@ Above <b>---- (CONSEQUENCE)</b> we have a statement that has derived all the ass
 { true } (G,I) <i>all assertions</i>
 ```
 
-To help the : Since there are many assertions, and since the postconditions of a derivation are then used as precondition of the next derivation as they are, we simply write 'preconditions' as in 
+To make the output shorter: Since there are many assertions, and since the postconditions of a derivation are then used as precondition of the next derivation as they are, we simply write 'preconditions' as in 
 
 ```
 { true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, unitt, []) } 
-```
 
 preconditions Value { true ... all other assertions }
+```
 
 with the understanding that 'preconditions' are always the postconditions of the previous derivation. 
 
