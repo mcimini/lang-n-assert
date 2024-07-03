@@ -92,7 +92,7 @@ output: <b>Proof not found</b>
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
@@ -104,7 +104,7 @@ output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivati
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
@@ -116,7 +116,7 @@ output: <b>Proof not found</b>
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
@@ -128,7 +128,7 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof der
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
@@ -140,7 +140,7 @@ output: <b>Proof not found</b>
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
@@ -152,7 +152,7 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proo
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
@@ -164,7 +164,7 @@ output: <b>Proof not found</b>
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
 
@@ -192,7 +192,7 @@ output: <b>Proof not found</b>
 
 
 
-</br> 
+<br/>
 ```
 -- on lists.lan of the folder "languages" -- 
 Same test as before: lazyness of lists.    
@@ -205,7 +205,7 @@ output: <a href="tests/lists_lazy.proof.txt">proof derivation (textual represent
 
 
 
-</br> 
+<br/>
 ```
 -- on pairs.lan of the folder "languages" -- 
 
@@ -220,7 +220,7 @@ output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual represent
 
 
 
-</br> 
+<br/>
 ```
 -- on lambda_stlc.lan of the folder "languages" -- 
 
@@ -234,7 +234,7 @@ output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation (t
 
 
 
-</br> 
+<br/>
 ```
 -- on pairs.lan of the folder "languages" -- 
 
