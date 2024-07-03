@@ -1,0 +1,24 @@
+Type T ::= (int) | (times T T) 
+Expression E ::= (num N) | (pair E E) | (fst E) | (snd E)
+Value V ::= (num N) | (pair E E) 
+Context C ::= [] | (fst C) | (snd C).
+
+
+[T-INT] 
+Gamma |- (num N) : (int).
+
+[T-PAIR]
+Gamma |- (pair E1 E2) : (times T1 T2) <== Gamma |- E1 : T1 /\ Gamma |- E2 : T2.
+
+[T-FST]
+Gamma |- (fst E) : T1 <== Gamma |- E : (times T1 T2). 
+
+[T-SND]
+Gamma |- (snd E) : T2 <== Gamma |- E : (times T1 T2). 
+
+[R-FST]
+(fst (pair E1 E2)) --> E1.
+
+[R-SND]
+(snd (pair E1 E2)) --> E2.
+

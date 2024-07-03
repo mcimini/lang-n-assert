@@ -1,0 +1,22 @@
+Type T ::= (int) | (list T) 
+Expression E ::= (num N) | (nil) | (cons E E) | (head E) 
+Value V ::= (num N) | (nil) | (cons E E) 
+Context C ::= [] | (head C). 
+
+
+[T-INT] 
+Gamma |- (num N) : (int).
+
+[T-NIL] 
+Gamma |- (nil) : (list T).
+
+[T-CONS]
+Gamma |- (cons E1 E2) : (list T) <== Gamma |- E : T /\ Gamma |- E : (list T).
+
+[T-HEAD]
+Gamma |- (head E) : T <== Gamma |- E : (list T). 
+
+[R-HEAD]
+(head (cons E1 E2)) --> E1.
+
+
