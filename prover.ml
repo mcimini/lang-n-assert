@@ -81,7 +81,13 @@ let makeContraResp (r : rule) (pre : assertions) : proof =
 	(* This below gets only the first c that has contravariant, should get all, or better, should see from the vars *)
 	let c = assertion_getContraTypeConstructors pre in NodeRule(pre, r, ContraResp(rule_getRulename r, c) :: pre, "contraResp")
 	else NodeRule(pre, r, pre, "neutral")
-	
+
+let fill_with_all_operators (lan : language) (l : (proof list)) : proof list = 
+	match List.hd l with NodeGr(pres,g,posts) -> 
+	let buildInductiveIfMissing (cname1 : string) : assertions = if (List.filter (fun a -> match a with Inductive("C",(cname2, _)) -> cname1 = cname2 | _ -> false) posts) = [] then [makeInductiveAssertion "C" (cname1,[])] else [] in 
+	let itemsAsOption = language_getGrammarItemsByCategoryButOnlyConstructED lan "Expression" in 
+	let addedAssertions = if is_none itemsAsOption then [] else List.concat (List.map buildInductiveIfMissing (List.map term_getCNAME (get itemsAsOption))) in 
+	NodeGr(pres,g,posts @ addedAssertions) :: l
 
 (* last proof is always the first  *)
 let prove_grammarLine (l : (proof list)) (g : grammarLine) : proof list = 
@@ -119,7 +125,7 @@ let prune_with_consequence_or_fail (pre : assertions) (lan : language) (post : a
 
 let prove (pre : assertions) (lan : language) (post : assertion) : proof option = 
 	let initialFakeProof = makeFakeInitialProof pre in 
-	let listProofsAfterGrammar = List.fold_left prove_grammarLine [initialFakeProof] (language_getGrammar lan) in 
+	let listProofsAfterGrammar = fill_with_all_operators lan (List.fold_left prove_grammarLine [initialFakeProof] (language_getGrammar lan)) in 
 	let listProofsAfterAll_but_reverse = List.fold_left prove_rule listProofsAfterGrammar (language_getRules lan) in 
 	  prune_with_consequence_or_fail pre lan post listProofsAfterAll_but_reverse
 (*
