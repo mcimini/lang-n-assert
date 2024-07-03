@@ -6,7 +6,7 @@ Below, we describe these proof derivations through the example of
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)' 
 </pre>
 
-and its <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation</a>. 
+and its <a href="lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation</a>. 
 
 
 The root of the proof derivation is at the end of the file: 
