@@ -10,11 +10,11 @@ and its <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivati
 The root of the proof derivation is at the end of the file: 
 
 
-```
+<pre>
 { true } (G,I) { *`all assertions`* } 
 ---- (CONSEQUENCE)
 { true } (G,I) { NoDupli(BETA) }
-```
+</pre>
 
 As the language definition in <b>lambda_div_print_1aFixed_1b_2_3.lan</b> is lengthy, we do not display it between the pre and postcondition.   
 We simply use <b>(G,I)</b> that represent the grammar <b>G</b> of the language and the inference system (set of inference rules) <b>I</b> of the language. 
