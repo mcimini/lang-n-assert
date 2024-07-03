@@ -100,11 +100,11 @@ The following tries to derive that the ordinary beta-reduction (call-by-value) d
 
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation (textual representation)</a> <br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
@@ -112,11 +112,11 @@ The following tries to derive that beta-reduction [BETA] is ctx-compliant, but t
 
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
 ```
-output: <b>Proof not found</b>
+output: <b>Proof not found</b><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
@@ -124,11 +124,11 @@ The following tries to derive that beta-reduction [BETA] is ctx-compliant after 
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation (textual representation)</a><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
