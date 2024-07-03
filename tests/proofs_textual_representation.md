@@ -68,10 +68,10 @@ The assertions for an inference rule are derived with proof rule <b>(ITERATE)</b
  preconditions  S-INT-FLOAT { <i>assertions from all grammar categories and rule [S-INT-FLOAT] </i> } 
 ```
 
-This proof rule takes <b>S-INT-FLOAT</b> and tries to derive an assertion <b>NoDupliEff</b> for it, then tries to derive <b>CtxCompliant</b> for it, then <b>ContraResp</b> for it, and so on. 
-The assertions that can be derived are then in the postcondition. And are passed to the next inference rule as preconditions. We therefore use again 'preconditions' because there are many assertions. 
-After having analyzed the last inference rule, the postcondition contains all the assertions that have been derived from grammar rules and inference rules, which we called <i>all assertions</i>. 
-This, then, is the postcondition of <b>{ true } (G,I) <i>all assertions</i></b> through <b>(LAN)</b>. 
+This proof rule takes <b>S-INT-FLOAT</b> and tries to derive an assertion <b>NoDupliEff</b> for it, then tries to derive <b>CtxCompliant</b> for it, then <b>ContraResp</b> for it, and so on.    
+The assertions that can be derived are then in the postcondition. And are passed to the next inference rule as preconditions. We therefore use again 'preconditions' because there are many assertions.   
+After having analyzed the last inference rule, the postcondition contains all the assertions that have been derived from grammar rules and inference rules, which we called <i>all assertions</i>.   
+This, then, is the postcondition of <b>{ true } (G,I) <i>all assertions</i></b> through <b>(LAN)</b>.   
 And <b>(CONSEQUENCE)</b>, then, singles out the assertions sought for from there. 
 
 
