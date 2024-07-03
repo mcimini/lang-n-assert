@@ -1,0 +1,31 @@
+{ true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) } 
+
+  preconditions  Value { true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) } 
+
+  preconditions  Context { true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) } 
+
+  preconditions  Context { true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-INT { ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-NIL { ContraResp(T-NIL, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-CONS { ContraResp(T-CONS, arrow) /\ ContraResp(T-NIL, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-HEAD { ContraResp(T-HEAD, arrow) /\ ContraResp(T-CONS, arrow) /\ ContraResp(T-NIL, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-HEAD { CtxCompliant(R-HEAD) /\ ContraResp(T-HEAD, arrow) /\ ContraResp(T-CONS, arrow) /\ ContraResp(T-NIL, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) }
+---- (LAN)
+{ true } (G,I) { CtxCompliant(R-HEAD) /\ ContraResp(T-HEAD, arrow) /\ ContraResp(T-CONS, arrow) /\ ContraResp(T-NIL, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, list, [1]) /\ Inductive(V, num, []) /\ Inductive(V, nil, []) /\ Inductive(V, cons, []) /\ Inductive(C, head, [1]) /\ Inductive(C, num, []) /\ Inductive(C, nil, []) /\ Inductive(C, cons, []) }
+---- (CONSEQUENCE)
+{ true } (G,I) { Inductive(C, cons, []) }

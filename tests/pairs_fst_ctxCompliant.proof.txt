@@ -32,4 +32,4 @@
 ---- (LAN)
 { true } (G,I) { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ ContraResp(T-SND, arrow) /\ ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) }
 ---- (CONSEQUENCE)
-{ true } (G,I) { Inductive(V, pair, []) }
+{ true } (G,I) { CtxCompliant(R-FST) }
