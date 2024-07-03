@@ -88,11 +88,10 @@ The following tries to derive that call-by-name parameter passing does not dupli
 
 ./lna 'true' lambda_div_print_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
 ```
-output: <b>Proof not found</b>
+output: <b>Proof not found</b> <br />
 
 
 
-<br/>
 ```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
