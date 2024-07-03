@@ -29,7 +29,7 @@ With <b>(CONSEQUENCE)</b>, <b>NoDupli(BETA)</b> has been singled out from those 
 
 
 
-<i>all assertions</i> is derived with the proof rule (LAN) in the following format. 
+<i>all assertions</i> is derived with the proof rule <b>(LAN)</b> in the following format. 
 
 ```
 { true } Type <i>assertions from Type</i> 
@@ -54,25 +54,25 @@ preconditions Value { true ... all other assertions }
 with the understanding that 'preconditions' are always the postconditions of the previous derivation. 
 
 
-The proof derivations for a grammar category derives all Inductive assertions, as in: 
+The proof derivations for a grammar category derives all <b>Inductive</b> assertions, as in: 
 
 ```
 { true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, unitt, []) } 
 ```
 
 
-The assertions for an inference rule are derived with proof rule (ITERATE) as in 
+The assertions for an inference rule are derived with proof rule <b>(ITERATE)</b> as in 
 
 ```
 ---- (ITERATE)
  preconditions  S-INT-FLOAT { <i>assertions from all grammar categories and rule [S-INT-FLOAT] </i> } 
 ```
 
-This proof rule takes S-INT-FLOAT and tries to derive an assertion NoDupliEff for it, then tries to derive CtxCompliant for it, then ContraResp for it, and so on. 
+This proof rule takes <b>S-INT-FLOAT</b> and tries to derive an assertion <b>NoDupliEff</b> for it, then tries to derive <b>CtxCompliant</b> for it, then <b>ContraResp</b> for it, and so on. 
 The assertions that can be derived are then in the postcondition. And are passed to the next inference rule as preconditions. We therefore use again 'preconditions' because there are many assertions. 
 After having analyzed the last inference rule, the postcondition contains all the assertions that have been derived from grammar rules and inference rules, which we called <i>all assertions</i>. 
-This, then, is the postcondition of { true } (G,I) <i>all assertions</i> through (LAN). 
-And (CONSEQUENCE), then, singles out the assertions sought for from there. 
+This, then, is the postcondition of <b>{ true } (G,I) <i>all assertions</i></b> through <b>(LAN)</b>. 
+And <b>(CONSEQUENCE)</b>, then, singles out the assertions sought for from there. 
 
 
 
