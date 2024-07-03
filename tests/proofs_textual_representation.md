@@ -11,7 +11,7 @@ The root of the proof derivation is at the end of the file:
 
 
 ```
-{ true } (G,I) { <i>all assertions</i> } 
+{ true } (G,I) { *`all assertions`* } 
 ---- (CONSEQUENCE)
 { true } (G,I) { NoDupli(BETA) }
 ```
