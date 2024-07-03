@@ -136,11 +136,11 @@ The following tries to derive that the language lets 'try' handle the error at i
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
 ```
-output: <b>Proof not found</b>
+output: <b>Proof not found</b><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
@@ -148,11 +148,11 @@ The following tries to derive that the language lets 'try' handle the error at i
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation (textual representation)</a><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
@@ -160,11 +160,11 @@ The following tries to derive that the typing rule of function application respe
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
 ```
-output: <b>Proof not found</b>
+output: <b>Proof not found</b><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
 
@@ -188,11 +188,11 @@ Lang-n-assert can detect that lists are lazy by failing to find evaluation conte
 ```
 output: <b>Proof not found</b>   
 output: <b>Proof not found</b>   
-output: <b>Proof not found</b>  
+output: <b>Proof not found</b>  <br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lists.lan of the folder "languages" -- 
 Same test as before: lazyness of lists.    
@@ -201,11 +201,11 @@ This time around, we directly asks whether cons has no evaluation contexts.
 ./lna 'true' lists.lan 'Inductive(C,cons,)'     
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
 ```
-output: <a href="tests/lists_lazy.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lists_lazy.proof.txt">proof derivation (textual representation)</a><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on pairs.lan of the folder "languages" -- 
 
@@ -216,11 +216,11 @@ The following asks for a proof derivation that the grammar production for 'pair'
 ./lna 'true' pairs.lan 'Inductive(V,pair,)' 
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
 ```
-output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual representation)</a><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on lambda_stlc.lan of the folder "languages" -- 
 
@@ -230,11 +230,11 @@ For example, the simply typed lambda-calculus does have inductive types due to t
 
 ./lna 'true' lambda_stlc.lan 'Inductive(T,arrow,1,2)'
 ```
-output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation (textual representation)</a><br /> <br />
 
 
 
-<br/>
+
 ```
 -- on pairs.lan of the folder "languages" -- 
 
