@@ -81,7 +81,7 @@ The following are examples of assertions and their meaning:
 Proof derivations are printed out in a textual representation. <a href="tests/proofs_textual_representation.md">See here how to read them</a>.
 
 
-</br> ```
+```
 -- on lambda_div_print_1a_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that call-by-name parameter passing does not duplicate effects.   
@@ -92,7 +92,8 @@ output: <b>Proof not found</b>
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that the ordinary beta-reduction (call-by-value) does not duplicate effects.   
@@ -103,7 +104,8 @@ output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivati
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant, but the language definition lacks evaluation context (v E).   
@@ -114,7 +116,8 @@ output: <b>Proof not found</b>
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant after we have added the evaluation context (v E).   
@@ -125,7 +128,8 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof der
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that the language lets 'try' handle the error at its first argument, but the error context 'try F with e' may prevent that.     
@@ -136,7 +140,8 @@ output: <b>Proof not found</b>
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
 The following tries to derive that the language lets 'try' handle the error at its first argument after we have removed the error context 'try F with e'. 
@@ -147,7 +152,8 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proo
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, but the typing rule is incorrect and checks T1 <: T3 rather than T3 <: T1.
@@ -158,7 +164,8 @@ output: <b>Proof not found</b>
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, after we have fixed the typing rule to check T3 <: T1.
@@ -185,7 +192,8 @@ output: <b>Proof not found</b>
 
 
 
-</br> ```
+</br> 
+```
 -- on lists.lan of the folder "languages" -- 
 Same test as before: lazyness of lists.    
 This time around, we directly asks whether cons has no evaluation contexts. 
@@ -197,7 +205,8 @@ output: <a href="tests/lists_lazy.proof.txt">proof derivation (textual represent
 
 
 
-</br> ```
+</br> 
+```
 -- on pairs.lan of the folder "languages" -- 
 
 This language definition contains lazy pairs. 
@@ -211,7 +220,8 @@ output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual represent
 
 
 
-</br> ```
+</br> 
+```
 -- on lambda_stlc.lan of the folder "languages" -- 
 
 Lang-n-assert can answer the question: 'Does my language contain inductive types?'. 
@@ -224,7 +234,8 @@ output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation (t
 
 
 
-</br> ```
+</br> 
+```
 -- on pairs.lan of the folder "languages" -- 
 
 The reduction rule [R-FST] for the operator 'fst' requires its argument to be a pair. 
