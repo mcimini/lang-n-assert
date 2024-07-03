@@ -100,7 +100,7 @@ The following tries to derive that the ordinary beta-reduction (call-by-value) d
 
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation (textual representation)</a> <br /> <br />
+output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation</a> <br /> <br />
 
 
 
@@ -124,7 +124,7 @@ The following tries to derive that beta-reduction [BETA] is ctx-compliant after 
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation (textual representation)</a><br /> <br />
+output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -148,7 +148,7 @@ The following tries to derive that the language lets 'try' handle the error at i
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation (textual representation)</a><br /> <br />
+output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -172,7 +172,7 @@ The following tries to derive that the typing rule of function application respe
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation</a>
 
 ### Other tests 
 
@@ -182,9 +182,9 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt"
 This language definition contains lazy lists. 
 Lang-n-assert can detect that lists are lazy by failing to find evaluation contexts for the operator 'cons'. That is, its components are not evaluated. 
 
-./lna 'true' lists.lan 'Inductive(C,cons,1)'.
-./lna 'true' lists.lan 'Inductive(C,cons,2)'.
-./lna 'true' lists.lan 'Inductive(C,cons,1,2)'.
+./lna 'true' lists.lan 'Inductive(C,cons,1)'
+./lna 'true' lists.lan 'Inductive(C,cons,2)'
+./lna 'true' lists.lan 'Inductive(C,cons,1,2)'
 ```
 output: <b>Proof not found</b>   
 output: <b>Proof not found</b>   
@@ -195,13 +195,13 @@ output: <b>Proof not found</b>  <br /> <br />
 
 ```
 -- on lists.lan of the folder "languages" -- 
-Same test as before: lazyness of lists.    
+Same test as before: laziness of lists.    
 This time around, we directly asks whether cons has no evaluation contexts. 
 
 ./lna 'true' lists.lan 'Inductive(C,cons,)'     
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
 ```
-output: <a href="tests/lists_lazy.proof.txt">proof derivation (textual representation)</a><br /> <br />
+output: <a href="tests/lists_lazy.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -216,7 +216,7 @@ The following asks for a proof derivation that the grammar production for 'pair'
 ./lna 'true' pairs.lan 'Inductive(V,pair,)' 
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
 ```
-output: <a href="tests/pairs_lazy.proof.txt">proof derivation (textual representation)</a><br /> <br />
+output: <a href="tests/pairs_lazy.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -230,7 +230,7 @@ For example, the simply typed lambda-calculus does have inductive types due to t
 
 ./lna 'true' lambda_stlc.lan 'Inductive(T,arrow,1,2)'
 ```
-output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation (textual representation)</a><br /> <br />
+output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -245,5 +245,5 @@ The following asks for a proof derivation that [R-FST] is 'ctx-compliant'
 
 ./lna 'true' pairs.lan 'CtxCompliant(R-FST)'          
 ```
-output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation (textual representation)</a>
+output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation</a>
 
