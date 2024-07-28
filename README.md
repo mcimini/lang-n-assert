@@ -57,7 +57,7 @@ The folder "languages" contains language definitions, including:
 	<li> Issue 1a: It makes use of call-by-name evaluation and therefore effects are duplicated. Fix: adopt the ordinary call-by-value beta-rule. 
 	<li> Issue 1b: Call-by-value beta-rule requires evaluation context for evaluating the argument. Fix: add such evaluation context. 
 	<li> Issue 2: Evaluator may "steal" the error from the try operator rather than letting try handle the error. Fix: Remove the declaration that the first argument of try is an error context. 
-	<li> Issue 3: The typing rule of function application checks rather than the other way around. Fix: switch the direction of that subtyping formula. 
+	<li> Issue 3: The typing rule of function application checks subtyping with the wrong direction: It checks that the type of the domain of the function is a subtype of the type of the argument. Fix: switch the direction of that subtyping formula. (That is, the type of the argument must be a subtype of the type of the domain of the function.)
 </ul>
 <li> <b>lambda_div_print_1aFixed_1b_2_3.lan</b>: Same as previous .lan but where issue 1a is fixed. 
 <li> <b>lambda_div_print_1aFixed_1bFixed_2_3.lan</b>: Same as previous .lan but where issue 1b is fixed. 
