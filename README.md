@@ -8,7 +8,7 @@ Statements have the form {P} X {Q} where P and Q are assertions and X, the subje
 
 <i>Language logics</i> are being proposed by this tool and its associated paper: <i>Coming Soon. Paper submitted, currently under review</i>.
 
-Lang-n-Assert is an automated theorem prover for a language logic. 
+Lang-n-Assert is an automated prover for a language logic. 
 
 
 # <a name="instructions"></a>Instructions 
