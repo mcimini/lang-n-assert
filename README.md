@@ -6,7 +6,7 @@ Author: Matteo Cimini (matteo_cimini@uml.edu)
 Statements have the form {P} X {Q} where P and Q are assertions and X, the subject of analysis, can be the entire language at hand or some of its components such as a piece of grammar, a typing rule, a reduction rule or other parts of the language definition. 
 
 
-<i>Language logics</i> are being proposed by this tool and its associated paper: <i>Coming Soon. Paper submitted, currently under review. </i>. 
+<i>Language logics</i> are being proposed by this tool and its associated paper: <i>Coming Soon. Paper submitted, currently under review</i>.
 
 Lang-n-Assert is an automated theorem prover for a language logic. 
 
