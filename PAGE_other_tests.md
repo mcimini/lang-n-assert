@@ -81,7 +81,7 @@ output: <a href="tests/lists_head_ctxCompliant.proof.txt">proof derivation</a><b
 ```
 -- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
-On the fixed language with references from these <a href="https://github.com/mcimini/lang-n-assert/tree/main?tab=readme-ov-file#tests_lambda_ref_err">tests</a>.  
+On the fixed language with references from the main tests. 
 
 The following asks for a proof derivation that the error 'error' can be typed at any type. 
 
@@ -96,7 +96,7 @@ output: <a href="tests/lambda_ref_err_error_any_type.proof.txt">proof derivation
 ```
 -- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
-On the fixed language with references from these <a href="https://github.com/mcimini/lang-n-assert/tree/main?tab=readme-ov-file#tests_lambda_ref_err">tests</a>.  
+On the fixed language with references from the main tests. 
 
 The following asks for a proof derivation that the reference type refType is invariant on its argument. 
 
