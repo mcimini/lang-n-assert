@@ -3,27 +3,12 @@
 
 
 
-```
--- on lists.lan of the folder "languages" -- 
-
-This language definition contains lazy lists. 
-Lang-n-assert can detect that lists are lazy by failing to find evaluation contexts for the operator 'cons'. That is, its components are not evaluated. 
-
-./lna 'true' lists.lan 'Inductive(C,cons,1)'
-./lna 'true' lists.lan 'Inductive(C,cons,2)'
-./lna 'true' lists.lan 'Inductive(C,cons,1,2)'
-```
-output: <b>Proof not found</b>   
-output: <b>Proof not found</b>   
-output: <b>Proof not found</b>  <br /> <br />
-
-
 
 
 ```
 -- on lists.lan of the folder "languages" -- 
 Same test as before: laziness of lists.    
-This time around, we directly asks whether cons has no evaluation contexts. 
+We asks whether cons has no evaluation contexts. 
 
 ./lna 'true' lists.lan 'Inductive(C,cons,)'     
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
@@ -73,4 +58,33 @@ The following asks for a proof derivation that [R-FST] is 'ctx-compliant'
 ./lna 'true' pairs.lan 'CtxCompliant(R-FST)'          
 ```
 output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation</a>
+
+
+
+
+```
+-- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
+
+On the fixed language with references from these <a href="https://github.com/mcimini/lang-n-assert/tree/main?tab=readme-ov-file#tests_lambda_ref_err">tests</a>.  
+
+The following asks for a proof derivation that the error 'error' can be typed at any type. 
+
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'ErrorAnyType(error)'
+```
+output: <a href="tests/lambda_ref_err_error_any_type.proof.txt">proof derivation</a>
+
+
+
+
+
+```
+-- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
+
+On the fixed language with references from these <a href="https://github.com/mcimini/lang-n-assert/tree/main?tab=readme-ov-file#tests_lambda_ref_err">tests</a>.  
+
+The following asks for a proof derivation that the reference type refType is invariant on its argument. 
+
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'Invariant(refType,1)'        
+```
+output: <a href="tests/lambda_ref_err_refType_invariant.proof.txt">proof derivation</a>
 
