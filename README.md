@@ -87,6 +87,8 @@ The folder "languages" includes language definitions:
 </ul>
 
 
+ <br />
+
 Proof derivations are printed out in a textual representation. <a href="tests/proofs_textual_representation.md">See here how to read them</a>.
 
  <br />

@@ -1,5 +1,5 @@
 
-# Tests
+# Tests on "lambda_div_print"
 
 The folder "languages" includes the following language definitions:  
 <ul>
@@ -17,10 +17,12 @@ The folder "languages" includes the following language definitions:
 <li> <b>lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan</b>: Same as previous .lan but where issue 3 is fixed, that is, all the issues above are fixed. 
 </ul>
 
-
+ <br />
 
 Proof derivations are printed out in a textual representation. <a href="tests/proofs_textual_representation.md">See here how to read them</a>.
 
+ <br />
+  <br />
 
 ```
 -- on lambda_div_print_1a_1b_2_3.lan of the folder "languages" -- 
@@ -29,7 +31,9 @@ The following tries to derive that call-by-name parameter passing does not dupli
 
 ./lna 'true' lambda_div_print_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
 ```
-output: <b>Proof not found</b> <br /> <br />
+output: <b>Proof not found</b>. 
+The target of the reduction rule  <b>[CBN-BETA]</b> is  <b>E1[E2/x] </b> and performs a substitution of a possibly effectful term, which may lead to a duplication of effects.
+ <br /> <br />
 
 
 
@@ -53,7 +57,9 @@ The following tries to derive that beta-reduction [BETA] is ctx-compliant, but t
 
 ./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
 ```
-output: <b>Proof not found</b><br /> <br />
+output: <b>Proof not found</b>. 
+An evaluation context is missing for the following variables used in <b>[BETA]</b>: <b>V</b>.
+<br /> <br />
 
 
 
@@ -77,7 +83,8 @@ The following tries to derive that the language lets 'try' handle the error at i
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
 ```
-output: <b>Proof not found</b><br /> <br />
+output: <b>Proof not found</b>. 
+Argument number <b>1</b> of the operator <b>try</b> is subject to an error context and may not handle the error.<br /> <br />
 
 
 
@@ -101,7 +108,9 @@ The following tries to derive that the typing rule of function application respe
 
 ./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
 ```
-output: <b>Proof not found</b><br /> <br />
+output: <b>Proof not found</b>. 
+Typing rule <b>[T-APP-BAD]</b> makes use of <b>T1</b> in contravariant position for arrow in premise <b>Gamma | Sigma |- E1 : (arrow T1
+T2)</b> but the following premises do not respect this contravarince: <b>T1 <: T3</b>.<br /> <br />
 
 
 
