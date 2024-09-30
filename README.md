@@ -89,6 +89,8 @@ The folder "languages" includes language definitions:
 
 Proof derivations are printed out in a textual representation. <a href="tests/proofs_textual_representation.md">See here how to read them</a>.
 
+ <br />
+  <br />
 
 ```
 -- on lambda_ref_err_1a_1b_2_3.lan of the folder "languages" -- 
