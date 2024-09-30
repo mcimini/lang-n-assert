@@ -6,9 +6,9 @@ Author: Matteo Cimini (matteo_cimini@uml.edu)
 Statements have the form {P} X {Q} where P and Q are assertions and X, the subject of analysis, can be the entire language at hand or some of its components such as a piece of grammar, a typing rule, a reduction rule or other parts of the language definition. 
 
 
-<i>Language logics</i> are being proposed by this tool and its associated paper: <i>Coming Soon. Paper submitted, currently under review</i>.
+<i>Language logics</i> are being proposed by this tool and its associated paper: <i>Coming Soon. Paper submitted, currently under review</i>. 
 
-Lang-n-Assert is an automated prover for a language logic. 
+Lang-n-Assert is an automated theorem prover for a language logic. 
 
 
 # <a name="instructions"></a>Instructions 
@@ -45,27 +45,7 @@ To clean:
 </ul>
 <br />
 
-
-
-# <a name="tests"></a>Tests
-
-The folder "languages" contains language definitions, including: 
-<ul>
-<li> <b>lambda_div_print_1a_1b_2_3.lan</b>: 
-<ul>
-	<li> Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and a print operation that adds strings into a buffer. 
-	<li> Issue 1a: It makes use of call-by-name evaluation and therefore effects are duplicated. Fix: adopt the ordinary call-by-value beta-rule. 
-	<li> Issue 1b: Call-by-value beta-rule requires evaluation context for evaluating the argument. Fix: add such evaluation context. 
-	<li> Issue 2: Evaluator may "steal" the error from the try operator rather than letting try handle the error. Fix: Remove the declaration that the first argument of try is an error context. 
-	<li> Issue 3: The typing rule of function application checks subtyping with the wrong direction: It checks that the type of the domain of the function is a subtype of the type of the argument. Fix: switch the direction of that subtyping formula. (That is, the type of the argument must be a subtype of the type of the domain of the function.)
-</ul>
-<li> <b>lambda_div_print_1aFixed_1b_2_3.lan</b>: Same as previous .lan but where issue 1a is fixed. 
-<li> <b>lambda_div_print_1aFixed_1bFixed_2_3.lan</b>: Same as previous .lan but where issue 1b is fixed. 
-<li> <b>lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan</b>: Same as previous .lan but where issue 2 is fixed. 
-<li> <b>lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan</b>: Same as previous .lan but where issue 3 is fixed, that is, all the issues above are fixed. 
-</ul>
-
-### Assertions: 
+# Assertions: 
 Reference guide: See the paper associated with the tool. (<i>Coming Soon</i>)
 
 The following are examples of assertions and their meaning:  
@@ -78,172 +58,136 @@ The following are examples of assertions and their meaning:
 </ul>
 
 
+
+# <a name="tests"></a>Tests
+
+<ul>
+<li> <a href="#tests_lambda_ref_err">Tests on "lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
+<li> <a href="PAGE_tests_on_lambda_div_print.md">Tests on "lambda_div_print"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and a print operation that adds strings into a buffer). 
+<li> <a href="PAGE_other_tests.md">Other tests</a> 
+</ul>
+
+
+# <a name="tests_lambda_ref_err"></a>Tests on "lambda_ref_err"
+
+The folder "languages" includes language definitions: 
+<ul>
+<li> <b>lambda_ref_err_1a_1b_2_3.lan</b>: 
+<ul>
+	<li> Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references. 
+	<li> Issue 1a: It makes use of call-by-name evaluation and therefore effects are duplicated. Fix: adopt the ordinary call-by-value beta-rule. 
+	<li> Issue 1b: Call-by-value beta-rule requires evaluation context for evaluating the argument. Fix: add such evaluation context. 
+	<li> Issue 2: Evaluator may "steal" the error from the try operator rather than letting try handle the error. Fix: Remove the declaration that the first argument of try is an error context. 
+	<li> Issue 3: The typing rule of function application checks subtyping with the wrong direction: It checks that the type of the domain of the function is a subtype of the type of the argument. Fix: switch the direction of that subtyping formula. (That is, the type of the argument must be a subtype of the type of the domain of the function.)
+</ul>
+<li> <b>lambda_ref_err_1aFixed_1b_2_3.lan</b>: Same as previous .lan but where issue 1a is fixed. 
+<li> <b>lambda_ref_err_1aFixed_1bFixed_2_3.lan</b>: Same as previous .lan but where issue 1b is fixed. 
+<li> <b>lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan</b>: Same as previous .lan but where issue 2 is fixed. 
+<li> <b>lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.lan</b>: Same as previous .lan but where issue 3 is fixed, that is, all the issues above are fixed. 
+</ul>
+
+
 Proof derivations are printed out in a textual representation. <a href="tests/proofs_textual_representation.md">See here how to read them</a>.
 
 
 ```
--- on lambda_div_print_1a_1b_2_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1a_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that call-by-name parameter passing does not duplicate effects.   
 
-./lna 'true' lambda_div_print_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
+./lna 'true' lambda_ref_err_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
 ```
-output: <b>Proof not found</b> <br /> <br />
+output: <b>Proof not found</b>. 
+The target of the reduction rule  <b>[CBN-BETA]</b> is  <b>E1[E2/x] </b> and performs a substitution of a possibly effectful term, which may lead to a duplication of effects.
+ <br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that the ordinary beta-reduction (call-by-value) does not duplicate effects.   
 
-./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
+./lna 'true' lambda_ref_err_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation</a> <br /> <br />
+output: <a href="tests/lambda_ref_err_1aFixed_1b_2_3.proof.txt">proof derivation</a> <br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1b_2_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1b_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant, but the language definition lacks evaluation context (v E).   
 
-./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
+./lna 'true' lambda_ref_err_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
 ```
-output: <b>Proof not found</b><br /> <br />
+output: <b>Proof not found</b>. 
+An evaluation context is missing for the following variables used in <b>[BETA]</b>: <b>V</b>.
+<br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant after we have added the evaluation context (v E).   
 
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation</a><br /> <br />
+output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2_3.proof.txt">proof derivation</a><br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
 
 The following tries to derive that the language lets 'try' handle the error at its first argument, but the error context 'try F with e' may prevent that.     
 
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
 ```
-output: <b>Proof not found</b><br /> <br />
+output: <b>Proof not found</b>. 
+Argument number <b>1</b> of the operator <b>try</b> is subject to an error context and may not handle the error.<br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
 The following tries to derive that the language lets 'try' handle the error at its first argument after we have removed the error context 'try F with e'. 
 
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation</a><br /> <br />
+output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation</a><br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, but the typing rule is incorrect and checks T1 <: T3 rather than T3 <: T1.
 
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
 ```
-output: <b>Proof not found</b><br /> <br />
+output: <b>Proof not found</b>. 
+Typing rule <b>[T-APP-BAD]</b> makes use of <b>T1</b> in contravariant position for arrow in premise <b>Gamma | Sigma |- E1 : (arrow T1
+T2)</b> but the following premises do not respect this contravarince: <b>T1 <: T3</b>.<br /> <br />
 
 
 
 
 ```
--- on lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
+-- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, after we have fixed the typing rule to check T3 <: T1.
 
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
+./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
 ```
-output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation</a>
+output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation</a>
 
-### Other tests 
-
-```
--- on lists.lan of the folder "languages" -- 
-
-This language definition contains lazy lists. 
-Lang-n-assert can detect that lists are lazy by failing to find evaluation contexts for the operator 'cons'. That is, its components are not evaluated. 
-
-./lna 'true' lists.lan 'Inductive(C,cons,1)'
-./lna 'true' lists.lan 'Inductive(C,cons,2)'
-./lna 'true' lists.lan 'Inductive(C,cons,1,2)'
-```
-output: <b>Proof not found</b>   
-output: <b>Proof not found</b>   
-output: <b>Proof not found</b>  <br /> <br />
-
-
-
-
-```
--- on lists.lan of the folder "languages" -- 
-Same test as before: laziness of lists.    
-This time around, we directly asks whether cons has no evaluation contexts. 
-
-./lna 'true' lists.lan 'Inductive(C,cons,)'     
-(Nothing after the last comma means 'no indices of argument positions are inductive'.)
-```
-output: <a href="tests/lists_lazy.proof.txt">proof derivation</a><br /> <br />
-
-
-
-
-```
--- on pairs.lan of the folder "languages" -- 
-
-This language definition contains lazy pairs. 
-Lang-n-assert can detect that pairs are lazy. To show a different test from the previous one, we base our test on the fact that terms (pair E E) are values for lazy pairs rather than (pair V V). 
-The following asks for a proof derivation that the grammar production for 'pair' in the grammar of values is not inductive. 
-
-./lna 'true' pairs.lan 'Inductive(V,pair,)' 
-(Nothing after the last comma means 'no indices of argument positions are inductive'.)
-```
-output: <a href="tests/pairs_lazy.proof.txt">proof derivation</a><br /> <br />
-
-
-
-
-```
--- on lambda_stlc.lan of the folder "languages" -- 
-
-Lang-n-assert can answer the question: 'Does my language contain inductive types?'. 
-It is enough to produce a proof for an assertion 'Inductive' for the metavariable T (of types) for a type constructor. 
-For example, the simply typed lambda-calculus does have inductive types due to the function type: 
-
-./lna 'true' lambda_stlc.lan 'Inductive(T,arrow,1,2)'
-```
-output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation</a><br /> <br />
-
-
-
-
-```
--- on pairs.lan of the folder "languages" -- 
-
-The reduction rule [R-FST] for the operator 'fst' requires its argument to be a pair. 
-Therefore, [R-FST] needs the evaluation context (fst C) to be 'ctx-compliant', which indeed exists. 
-
-The following asks for a proof derivation that [R-FST] is 'ctx-compliant'
-
-./lna 'true' pairs.lan 'CtxCompliant(R-FST)'          
-```
-output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation</a>
 
