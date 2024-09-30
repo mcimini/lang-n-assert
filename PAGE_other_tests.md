@@ -57,7 +57,7 @@ The following asks for a proof derivation that [R-FST] is 'ctx-compliant'
 
 ./lna 'true' pairs.lan 'CtxCompliant(R-FST)'          
 ```
-output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation</a>
+output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -71,7 +71,7 @@ The following asks for a proof derivation that the error 'error' can be typed at
 
 ./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'ErrorAnyType(error)'
 ```
-output: <a href="tests/lambda_ref_err_error_any_type.proof.txt">proof derivation</a>
+output: <a href="tests/lambda_ref_err_error_any_type.proof.txt">proof derivation</a><br /> <br />
 
 
 
@@ -86,5 +86,5 @@ The following asks for a proof derivation that the reference type refType is inv
 
 ./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'Invariant(refType,1)'        
 ```
-output: <a href="tests/lambda_ref_err_refType_invariant.proof.txt">proof derivation</a>
+output: <a href="tests/lambda_ref_err_refType_invariant.proof.txt">proof derivation</a><br /> <br />
 
