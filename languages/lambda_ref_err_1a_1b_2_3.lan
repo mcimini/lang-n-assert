@@ -1,0 +1,96 @@
+Type T ::= (int) | (float) | (arrow T T) | (refType T)| (unitType)
+Expression E ::= (num N) | (float F) | (div E E) | (plus E E) | x | (abs T (x)E) | (app E E) | (unit) | (label L) | (ref E) | (deref E) | (assign E E) | (seq E E) | (error) | (try E E)
+Value V ::= (num N) | (float F) | (abs T (x)E) | (unit) | (label L)
+Error ::= (error)
+LocationEnvironment Sigma ::= (map L T) 
+Heap H ::= (map L V) 
+Context C ::= [] | (div C E) | (div V C) | (plus C E) | (plus V C) | (app C E) | (ref C) | (deref C) | (assign C E) | (assign V C)  | (seq C E) | (try C E) 
+ErrContext F ::= [] | (div F E) | (div V F) | (plus F E) | (plus V F) | (app F E) | (ref F) | (deref F) | (assign F E) | (assign V F)  | (seq F E) | (try F E). 
+
+[S-INT-FLOAT]
+(int) <: (float).
+
+[S-REFL-INT]
+(int) <: (int).
+
+[S-REFL-FLOAT]
+(float) <: (float).
+
+[S-REFL-UNIT]
+(unitType) <: (unitType).
+
+[S-ARROW]
+(arrow T1 T2) <: (arrow T3 T4) <== T3 <: T1 /\ T2 <: T4.
+
+[S-REF]
+(refType T) <: (refType T).
+
+[T-INT] 
+Sigma | Gamma |- (num N) : (int).
+
+[T-FLOAT] 
+Sigma | Gamma |- (float F) : (float).
+
+[T-DIV]
+Sigma | Gamma |- (div E1 E2) : (int) <== Gamma |- E1 : (int) /\ Gamma |- E2 : (int).
+
+[T-PLUS]
+Sigma | Gamma |- (div E1 E2) : (int) <== Gamma |- E1 : (int) /\ Gamma |- E2 : (int).
+
+[T-ABS]
+Sigma | Gamma |- (abs T1 R) : (arrow T1 T2) <== Gamma, x : T1 | Sigma |- R : T2.
+
+[T-APP-BAD]
+Sigma | Gamma |- (app E1 E2) : T2 <== Sigma | Gamma |- E1 : (arrow T1 T2) /\ Sigma | Gamma |- E2 : T3  /\ T1 <: T3.
+
+[T-UNIT] 
+Sigma | Gamma |- (unit) : (unitType).
+
+[T-LABEL] 
+Sigma | Gamma |- (label L) : (refType T) <== (lookup Sigma L T). 
+
+[T-REF]
+Sigma | Gamma |- (ref E) : (refType T) <== Sigma | Gamma |- E : T.
+
+[T-DEREF]
+Sigma | Gamma |- (deref E) : T <== Sigma | Gamma |- E : (refType T).
+
+[T-ASSIGN]
+Sigma | Gamma |- (assign E1 E2) : (unitType) <== Sigma | Gamma |- E1 : (refType T) /\ Sigma | Gamma |- E2 : T. 
+
+[T-SEQ]
+Sigma | Gamma |- (seq E1 E2) : T2 <== Sigma | Gamma |- E1 : T1 /\ Sigma | Gamma |- E2 : T2. 
+
+[T-ERROR]
+Sigma | Gamma |- (error) : T. 
+
+[T-TRY]
+Sigma | Gamma |- (try E1 E2) : Tj <== Sigma | Gamma |- E1 : T1 /\ Sigma | Gamma |- E2 : T2  /\ (join T1 T2 Tj). 
+
+
+[CBN-BETA]
+(app (abs T E1) E2), H --> E1[E2/x], H. 
+
+[R-REF]
+(ref V), H --> (label L), H <== value V /\ (fresh H V L). 
+
+[R-DEREF]
+(deref (label L)), H --> V, H <== value V /\ (lookup H L V). 
+
+[R-ASSIGN]
+(assign (label L) V), H1 --> (unit), H2 <== value V /\ (update H1 L V H2). 
+
+[R-SEQ]
+(seq V E), H --> E, H <== value V.
+
+[R-DIV]
+(div (float F1) (float F2)), H --> (float F3), H <== (division F1 F2 F3). 
+
+[R-PLUS]
+(plus (float F1) (float F2)), H --> (float F3), H <== (plus F1 F2 F3). 
+
+[TRY]
+(try V E), H --> V, H <== value V.
+
+[ERR]
+(try (error) E), H --> E, H. 
