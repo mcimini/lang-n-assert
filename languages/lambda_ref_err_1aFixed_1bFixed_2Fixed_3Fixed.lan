@@ -56,7 +56,7 @@ Sigma | Gamma |- (ref E) : (refType T) <== Sigma | Gamma |- E : T.
 Sigma | Gamma |- (deref E) : T <== Sigma | Gamma |- E : (refType T).
 
 [T-ASSIGN]
-Sigma | Gamma |- (assign E1 E2) : T <== Sigma | Gamma |- E1 : (refType T) /\ Sigma | Gamma |- E2 : T. 
+Sigma | Gamma |- (assign E1 E2) : (unitType) <== Sigma | Gamma |- E1 : (refType T) /\ Sigma | Gamma |- E2 : T. 
 
 [T-SEQ]
 Sigma | Gamma |- (seq E1 E2) : T2 <== Sigma | Gamma |- E1 : T1 /\ Sigma | Gamma |- E2 : T2. 
