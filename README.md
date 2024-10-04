@@ -19,6 +19,14 @@ Requirements:
 <br/> <a href="dependencies.txt">These versions of OCaml, Batteries and Menhir</a> are tested to work. (Some others may work) 
 </ul>
 
+<br/>
+A quick way to install the dependencies through Opam switch is: 
+
+```
+opam switch import dependencies.txt --switch lnp && eval $(opam env)
+```
+<br/>
+
 Quick usage: 
 <ul>
 <li> make 
