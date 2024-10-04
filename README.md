@@ -67,8 +67,8 @@ The following are examples of assertions and their meaning:
 <li> <b>Inductive(T,arrow,1,2)</b>: The constructor <b>arrow</b> builds a member of the syntactic category with metavariable <b>T</b> and its first and second arguments are inductive, i.e., they are <b>T</b>s, as well. 
 <li> <b>CtxCompliant(BETA)</b>: A reduction rule is <i>ctx-compliant</i> whenever: if the reduction rule [BETA] defines the behavior of an operator and some of its arguments are required to be values (or errors) for the rule to fire, then evaluation contexts are so defined for those arguments to be evaluated.  
 <li> <b>HandlesError(try,1)</b>: The operator <b>try</b> handles the error at its first argument, and the error contexts for the <b>try</b> operator are so defined to indeed leave the handling of the error to <b>try</b> at runtime. 
-<li> <b>Contravariant(arrow,1)</b>: The first argument of type constructor <b>arrow</b> is contravariant.
 <li> <b>Invariant(refType,1)</b>: The first argument of type constructor <b>refType</b> is invariant.
+<li> <b>Contra(arrow,1)</b>: The first argument of type constructor <b>arrow</b> is contravariant.
 <li> <b>ContraResp(T-APP,arrow)</b>: The typing rule [T-APP] respect the contravariance of the <b>arrow</b> type (function type). 
 <li> <b>ErrorAnyType(error)</b>: The expression contructor <b>error</b> is an error and can be typed at any type. 
 <li> <b>... and more to be added over time ...</b>
