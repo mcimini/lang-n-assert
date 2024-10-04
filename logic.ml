@@ -14,6 +14,9 @@ type assertion =
 	| NoDupli of rname 
 	| Contra of cname * (int list)
 	| ContraResp of rname * cname 
+	| Error of cname 
+	| ErrorAnyType of cname 
+	| Invariant of cname * (int list)
 
 type assertions = assertion list 
 
@@ -27,9 +30,12 @@ type proof =
 	| NodeConsequence of assertions * language * assertions * proof
 
 
+let map_of_failures : ((assertion * string) list) ref = ref []
+
 let makeFakeInitialProof (post : assertions) : proof = NodeGr([True],GrammarLine("",None,None),[True])
 
 let makeInductiveAssertion (metavar : id) (idxs : (cname * (int list))) = Inductive(metavar, idxs)
+let makeErrorAssertion (c :cname) = Error(c)
 
 let proof_getPost (p : proof) : assertions = match p with 
 	| NodeGr(_,_,post) -> post
@@ -77,6 +83,10 @@ let print_assertion (a : assertion) : string = match a with
 	| NoDupli(rname) -> "NoDupli(" ^ rname ^ ")"  
 	| Contra(c,is) -> "Contra(" ^ c ^ ", " ^ mydump(is) ^ ")" 
 	| ContraResp(rname,c) -> "ContraResp(" ^ rname ^ ", " ^ c ^ ")" 
+	| Error(c) -> "Error(" ^ c ^ ")" 
+	| ErrorAnyType(c) -> "ErrorAnyType(" ^ c ^ ")" 
+	| Invariant(c,is) -> "Invariant(" ^ c ^ ", " ^ mydump(is) ^ ")" 
+	
 
 let print_assertions (asserts : assertions) : string = String.concat " /\\ "(List.map print_assertion asserts)
 
@@ -95,3 +105,11 @@ let rec print_proof (p : proof) : string =
 	| NodeIteR (pre,r,post,proofs) -> let premises = "" in let conclusion = makeStatement pre (" " ^ rule_getRulename r ^ " ") post in makeInferenceRule premises conclusion "(ITERATE)"
 	| NodeConsequence(pre, lan, post, proof) -> let premises = print_proof proof in let conclusion = makeStatement pre " (G,I) " post in makeInferenceRule premises conclusion "(CONSEQUENCE)"
 and print_proofs (proofs : proof list) : string = String.concat " \n\n " (List.map print_proof proofs)
+
+let msgNoDupli (r : rule) (t : term) = "The target of the reduction rule [" ^ rule_getRulename r ^ "] is " ^ print_term t ^ " and performs a substitution of a possibly effectful term, which may lead to a duplication of effects." 
+let msgCtxCompliant (r : rule) (args : term list) = "An evaluation context is missing for the following variables used in [" ^ rule_getRulename r ^ "]: " ^ String.concat ", " (List.map print_term args) ^ "."
+let msgHandlesError (c : string) (i : int) = "Argument number " ^ string_of_int i ^ " of the operator " ^ c ^ " is subject to an error context and may not handle the error." 
+let msgContraResp (r : rule) (c : string) (premises : formula list) (typingPremises : formula list) = "Typing rule [" ^ rule_getRulename r ^ "] makes use of " ^ print_term (formula_getFirstArg (List.hd premises)) ^ " in contravariant position for " ^ c ^ " in premise " ^ print_formula (premises_search_by_output typingPremises (formula_getFirstArg (List.hd premises))) ^ " but the following premises do not respect this contravarince: " ^ String.concat ", " (List.map print_formula premises) ^ "."
+
+
+

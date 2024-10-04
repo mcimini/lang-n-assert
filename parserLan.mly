@@ -96,6 +96,8 @@ formula :
     { Formula(predname, ts) }
   | t1 = term SUBTYPING t2 = term 
     { Formula("subtype", [t1 ; t2]) }
+  | assumptions = separated_list(MID, assumption) TURNSTYLE t1 = term COLON t2 = term
+    { Formula("typeOf", assumptions @ [t1 ; t2]) }
 
 assumption : 
   | GAMMA 
@@ -104,6 +106,8 @@ assumption :
     { Constr("gammaAddx", [t]) }
   | GAMMA COMMA VARBIGX 
 	{ Constr("gammaAddX", []) }
+  | metavar = VARTERM 
+    { LangVar metavar }
 
 grammarLine : 
 	| category = VARTERM metavar = option(VARTERM) GRAMMARASSIGN ts = separated_list(MID, term)	

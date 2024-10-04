@@ -16,6 +16,7 @@ open Lexing
 
 let get_positions lexbuf = let pos = lexbuf.lex_curr_p in pos.pos_fname ^ ":" ^ string_of_int pos.pos_lnum  ^ ":" ^ string_of_int (pos.pos_cnum - pos.pos_bol + 1)
 
+let safe_list_assoc k map : string = try List.assoc k map with Not_found -> ""
 
 let parseOneLanguage filename : language =
   (* Parse the language, lan is the parsed language *)
@@ -45,7 +46,7 @@ let () = match Array.to_list Sys.argv with
 							let proof = prove [pre] lan post in 
 							if is_some proof 
 								then (print_endline (print_proof (get proof)))
-								else print_endline "Proof not found";
+								else (print_endline "Proof not found"; print_endline (safe_list_assoc post (!map_of_failures));) 
 	| otherwise -> print_endline ("Command line error: example: ./lna pre file.lan post");
 
 

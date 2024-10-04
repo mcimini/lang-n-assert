@@ -28,6 +28,9 @@ rule token = parse
   | "NoDupliEff"               { NODUPLI }
   | "Contra"               { CONTRA }
   | "ContraResp"               { CONTRARESP }
+  | "Error"               { ERROR }
+  | "ErrorAnyType"               { ERRORANY }
+  | "Invariant"               { INVARIANT }
   | "(" { LEFTPAR }
   | ")" { RIGHTPAR }
   | "[" { LEFTSQUARE }

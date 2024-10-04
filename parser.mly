@@ -14,6 +14,9 @@
 %token NODUPLI
 %token CONTRA
 %token CONTRARESP
+%token ERROR
+%token ERRORANY
+%token INVARIANT
 
 %token LEFTSQUARE 
 %token RIGHTSQUARE 
@@ -51,8 +54,16 @@ assertion :
 	{ NoDupli(rname) }
 	| CONTRA LEFTPAR c =  ID COMMA is = separated_list(COMMA, number) RIGHTPAR 
 	{ Contra(c,is) }
-	| CONTRARESP LEFTPAR rname =  ID COMMA c =  ID RIGHTPAR 
+	| CONTRARESP LEFTPAR rname =  ID COMMA c = ID RIGHTPAR 
 	{ ContraResp(rname,c) }
+	| ERROR LEFTPAR c = ID RIGHTPAR 
+	{ Error(c) }
+	| ERRORANY LEFTPAR c = ID RIGHTPAR 
+	{ ErrorAnyType(c) }
+	| INVARIANT LEFTPAR c =  ID COMMA is = separated_list(COMMA, number) RIGHTPAR 
+	{ Invariant(c,is) }
+
+	
 
 number : 
 	| n = NUM 

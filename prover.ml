@@ -8,6 +8,8 @@ open Logic
 
 let getLastAssertions (l : (proof list)) : assertions = proof_getPost (List.hd l)
 
+let track_failed_premise (a : assertion) (msg : string) = map_of_failures := (a,msg) :: !map_of_failures
+
 let makeInductives (g : grammarLine) (metavar : string) : assertions = 
 	match g with GrammarLine(_,option_var,option_ts) -> 
 		if is_none option_var || not(get option_var = metavar) then [] (* else [  NodeIteGr (a,g,a,[])  ] *)
@@ -17,6 +19,12 @@ let makeInductives (g : grammarLine) (metavar : string) : assertions =
 (*		let makeOneProof pair = NodeGr(a,g,makeInductiveAssertion metavar pair :: a) in 
 		   List.map makeOneProof (List.map pairConstrAndPositions ts) 
 *)		
+
+let makeErrors (g : grammarLine) : assertions = 
+	match g with GrammarLine(catname,_,option_ts) -> 
+		if is_none option_ts || not(catname = "Error") then [] (* else [  NodeIteGr (a,g,a,[])  ] *)
+		else let ts = get option_ts in 
+		  List.map makeErrorAssertion (List.map term_getCNAME ts) 
 
 let args_of_source (r : rule) = term_getArguments (rule_getInputOfConclusion r) 
 let stateSource (f : formula) = List.nth (formula_getArguments f) 1 
@@ -29,35 +37,47 @@ let outputBeforeState r = List.nth (formula_getArguments (rule_getConclusion r))
 let makeCtx (r : rule) (pre : assertions) : proof = 
 	if rule_isPredname "step" r && term_isConstr (rule_getInputOfConclusion r) 
 	then 
-	if (args_of_source r) = List.filteri (fun i arg -> 
-	((is_value arg || is_error arg) && List.mem (i+1) (assertion_getInductiveIdxs pre (rule_getInputOfConclusion r) "C")) || (not(is_value arg) && not(is_error arg))
-										 )
-										 (args_of_source r)
-	then NodeRule(pre, r, Ctx(rule_getRulename r) :: pre, "ctxCompliant") else NodeRule(pre, r, pre, "neutral")
+		let filtered_args = List.filteri (fun i arg -> 
+		((is_value arg || is_error arg) && List.mem (i+1) (assertion_getInductiveIdxs pre (rule_getInputOfConclusion r) "C")) || (not(is_value arg) && not(is_error arg))
+											 )
+											 (args_of_source r) in 
+		if (args_of_source r) = filtered_args								 
+		then NodeRule(pre, r, Ctx(rule_getRulename r) :: pre, "ctxCompliant") 
+	    else let _ = track_failed_premise (Ctx(rule_getRulename r)) (msgCtxCompliant r (list_difference (args_of_source r) filtered_args)) in NodeRule(pre, r, pre, "neutral")
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeErr (r : rule) (pre : assertions) : proof = 
 	if rule_isPredname "step" r && term_isConstr (rule_getInputOfConclusion r) 
 	then 
-		if (args_of_source r) = List.filteri (fun i arg -> 
+		let filtered_args = List.filteri (fun i arg -> 
 			(is_error arg && not(List.mem (i+1) (assertion_getInductiveIdxs pre (rule_getInputOfConclusion r) "F"))) || (not(is_error arg))
 												 )
-												 (args_of_source r)
+												 (args_of_source r) in 
+		if (args_of_source r) = filtered_args								 
 		then 
 			let opAndIdx_list_unfiltered = List.mapi (fun i arg -> if is_error arg then term_getCNAME (rule_getInputOfConclusion r), i+1 else ("",-100)) (args_of_source r) in 
 			let opAndIdx_list = List.filter (fun pair -> snd pair >= 0) opAndIdx_list_unfiltered in   
 			if opAndIdx_list = [] then NodeRule(pre, r, pre, "neutral") else let (c,i) = List.hd opAndIdx_list in NodeRule(pre, r, HandlesError(c,i) :: pre, "error-handler")
-		else NodeRule(pre, r, pre, "neutral")
+		else 
+			let opAndIdx_list_unfiltered = List.mapi (fun i arg -> if is_error arg && not(List.mem arg filtered_args) then term_getCNAME (rule_getInputOfConclusion r), i+1 else ("",-100)) (args_of_source r) in 
+			let opAndIdx_list = List.filter (fun pair -> snd pair >= 0) opAndIdx_list_unfiltered in 
+			let _ = List.map (fun (c,i) -> track_failed_premise (HandlesError(c,i)) (msgHandlesError c i)) opAndIdx_list in NodeRule(pre, r, pre, "neutral")
 	else NodeRule(pre, r, pre, "neutral")
+
 
 let makeEff (r : rule) (pre : assertions) : proof = 
 	if rule_isPredname "step" r && not(stateSource (rule_getConclusion r) = stateTarget (rule_getConclusion r)) then NodeRule(pre, r, Effectful :: pre, "effectful")
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeNoDupli (r : rule) (pre : assertions) : proof = 
-	if rule_isPredname "step" r &&  List.for_all is_value (args_of_source r) then NodeRule(pre, r, NoDupli(rule_getRulename r) :: pre, "ineffectual") 
-	else 
-	if rule_isPredname "step" r &&  not(term_isSubstitution (outputBeforeState r)) then NodeRule(pre, r, NoDupli(rule_getRulename r) :: pre, "effectual") 	
+	if rule_isPredname "step" r 
+	then (if (List.for_all is_value (args_of_source r)) 
+		 then NodeRule(pre, r, NoDupli(rule_getRulename r) :: pre, "effectual") 
+		 else (if term_isSubstitution (outputBeforeState r) 
+			  then let _ = track_failed_premise (NoDupli(rule_getRulename r)) (msgNoDupli r (outputBeforeState r)) in NodeRule(pre, r, pre, "neutral")
+			  else NodeRule(pre, r, NoDupli(rule_getRulename r) :: pre, "effectual")
+			  )
+		  ) 	
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeContra (r : rule) (pre : assertions) : proof = 
@@ -69,17 +89,41 @@ let makeContra (r : rule) (pre : assertions) : proof =
 	let contraPositions = List.filter (fun i -> i >= 0) (List.mapi (fun i f -> if List.mem f (rule_getPremises r) then i+1 else -100) formulaeToSearch)
 	in NodeRule(pre, r, Contra(term_getCNAME left, contraPositions) :: pre, "contra")
 	else NodeRule(pre, r, pre, "neutral")
+
+let makeInvariant (r : rule) (pre : assertions) : proof = 
+	let left = (rule_getInputOfConclusion r) in 
+	let right = (rule_getOutputOfConclusion r) in 
+	if rule_isPredname "subtype" r && term_isConstr left && term_isConstr right then 
+	let varsLeft = term_getVariables (rule_getInputOfConclusion r) in 
+	let varsRight = term_getVariables (rule_getOutputOfConclusion r) in 
+	let pairLeftAndRight = List.combine varsLeft varsRight in 
+	let invariantPositions = List.filter (fun i -> i >= 0) (List.mapi (fun i (a,b) -> if a = b then i+1 else -100) pairLeftAndRight) in 
+    	NodeRule(pre, r, Invariant(term_getCNAME left, invariantPositions) :: pre, "invariant")
+	else NodeRule(pre, r, pre, "neutral")
 	
 (* adds contraResp only for the c encountered in output types of premises *)
 let makeContraResp (r : rule) (pre : assertions) : proof = 
 	if rule_isPredname "typeOf" r then 	
 	let outputsWithConstructor = List.filter term_isConstr (List.map lastOutput (rule_getTypingPremises r)) in 
 	let vars_unfiltered = List.concat (List.map (fun t -> List.mapi (fun i arg -> if (assertion_checkContra pre (term_getCNAME t) i) then arg else BoundVar) (term_getArguments t)) outputsWithConstructor) in 
-	let vars = List.filter term_isVar vars_unfiltered in 	
-	if List.exists (fun var -> List.exists (fun f -> formula_getFirstArg f = var) (rule_getSubtypingPremises r)) vars then NodeRule(pre, r, pre, "neutral")
-	else 
+	let vars = List.filter term_isVar vars_unfiltered in
+	let subtypingformulaeWithVarAsFirst = List.concat (List.map (fun var -> List.filter (fun f -> formula_getFirstArg f = var) (rule_getSubtypingPremises r)) vars) in 
 	(* This below gets only the first c that has contravariant, should get all, or better, should see from the vars *)
-	let c = assertion_getContraTypeConstructors pre in NodeRule(pre, r, ContraResp(rule_getRulename r, c) :: pre, "contraResp")
+	let c = assertion_getContraTypeConstructors pre in 
+(*	if List.exists (fun var -> List.exists (fun f -> formula_getFirstArg f = var) (rule_getSubtypingPremises r)) vars then NodeRule(pre, r, pre, "neutral") *)
+		if not(subtypingformulaeWithVarAsFirst = []) 
+		then let _ = track_failed_premise (ContraResp(rule_getRulename r, c)) (msgContraResp r c subtypingformulaeWithVarAsFirst (rule_getTypingPremises r)) in NodeRule(pre, r, pre, "neutral")
+		else NodeRule(pre, r, ContraResp(rule_getRulename r, c) :: pre, "contraResp")
+	else NodeRule(pre, r, pre, "neutral")
+
+let makeErrorAnyType (r : rule) (pre : assertions) : proof = 
+	if rule_isPredname "typeOf" r then 	
+	let varsInTypingPremises = List.concat (List.map term_getVariables (List.map lastOutput (rule_getPremises r))) in 
+	let input = rule_getInputOfConclusion r in 
+	let output = rule_getOutputOfConclusion r in 
+	if term_isVar output && not(term_isVar input) && not(List.mem output varsInTypingPremises)
+		then NodeRule(pre, r, ErrorAnyType(term_getCNAME input) :: pre, "ErrorAnyType")
+		else NodeRule(pre, r, pre, "neutral")
 	else NodeRule(pre, r, pre, "neutral")
 
 let fill_with_all_operators (lan : language) (l : (proof list)) : proof list = 
@@ -91,10 +135,12 @@ let fill_with_all_operators (lan : language) (l : (proof list)) : proof list =
 
 (* last proof is always the first  *)
 let prove_grammarLine (l : (proof list)) (g : grammarLine) : proof list = 
-	match g with GrammarLine(_,option_var,_) -> 
-	if is_none option_var || (  not(get option_var = "C") &&  not(get option_var = "F") &&  not(get option_var = "V") &&  not(get option_var = "T")  ) then l 
-	else 
 	let startingPre = getLastAssertions l in 
+	match g with 
+	| GrammarLine("Error",option_var,_) -> 	let errors = makeErrors g in NodeGr(startingPre,g,startingPre @ errors) :: l
+	| GrammarLine(catname,option_var,_) -> 
+	if is_none option_var || (  not(get option_var = "C") &&  not(get option_var = "F") &&  not(get option_var = "V") &&  not(get option_var = "T") ) then l 
+	else 
 	let inductives = makeInductives g (get option_var) in (* Here inductiveEs may be empty *)
 	NodeGr(startingPre,g,startingPre @ inductives) :: l
 
@@ -107,8 +153,10 @@ let prove_rule (l : (proof list)) (r : rule) : (proof list) =
 	let noDupliProof = if reduction_has_state r then makeNoDupli r (proof_getPost effProof) else effProof in 
 	let contraProof = makeContra r (proof_getPost noDupliProof) in 
 	let contraRespProof = makeContraResp r (proof_getPost contraProof) in 
-	let post = proof_getPost contraRespProof in 
-	let allProofAttempts = [ctxProof ; errorHandlerProof ; effProof ; noDupliProof ; contraProof ; contraRespProof] in 
+	let errorAnyProof = makeErrorAnyType r (proof_getPost contraRespProof) in 
+	let invariantProof = makeInvariant r (proof_getPost errorAnyProof) in 
+	let post = proof_getPost invariantProof in 
+	let allProofAttempts = [ctxProof ; errorHandlerProof ; effProof ; noDupliProof ; contraProof ; contraRespProof ; errorAnyProof ; invariantProof] in 
 	    makeIterateRuleProof startingPre r post allProofAttempts :: l
 
 let prune_with_consequence_or_fail (pre : assertions) (lan : language) (post : assertion) (l : (proof list)) : proof option = 
