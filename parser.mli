@@ -10,8 +10,11 @@ type token =
   | NODUPLI
   | LEFTSQUARE
   | LEFTPAR
+  | INVARIANT
   | INDUCTIVE
   | ID of (string)
+  | ERRORANY
+  | ERROR
   | ERR
   | EOF
   | EFF
