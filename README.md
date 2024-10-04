@@ -68,9 +68,10 @@ The following are examples of assertions and their meaning:
 <li> <b>Invariant(refType,1)</b>: The first argument of type constructor <b>refType</b> is invariant.
 <li> <b>ContraResp(T-APP,arrow)</b>: The typing rule [T-APP] respect the contravariance of the <b>arrow</b> type (function type). 
 <li> <b>ErrorAnyType(error)</b>: The expression contructor <b>error</b> is an error and can be typed at any type. 
+<li> <b>... and more to be added over time ...</b>
 </ul>
 
-
+<br />
 
 # <a name="tests"></a>Tests
 
