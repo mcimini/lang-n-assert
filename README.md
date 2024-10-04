@@ -10,6 +10,9 @@ Statements have the form {P} X {Q} where P and Q are assertions and X, the subje
 
 Lang-n-Assert is an automated theorem prover for a language logic. 
 
+<br/>
+To help browse this page: <a href="#instructions">instructions"</a> - <a href="#assertions">Assertions"</a> - <a href="#tests">Tests"</a>
+
 
 # <a name="instructions"></a>Instructions 
 
@@ -53,7 +56,7 @@ To clean:
 </ul>
 <br />
 
-# Assertions: 
+# <a name="assertions"></a>Assertions: 
 Reference guide: See the paper associated with the tool. (<i>Coming Soon</i>)
 
 The following are examples of assertions and their meaning:  
