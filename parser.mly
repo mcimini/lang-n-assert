@@ -17,11 +17,8 @@
 %token ERROR
 %token ERRORANY
 %token INVARIANT
-<<<<<<< HEAD
 %token SOUNDVARIANCE
 %token MUTABLE
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 %token LEFTSQUARE 
 %token RIGHTSQUARE 
@@ -67,13 +64,10 @@ assertion :
 	{ ErrorAnyType(c) }
 	| INVARIANT LEFTPAR c =  ID COMMA is = separated_list(COMMA, number) RIGHTPAR 
 	{ Invariant(c,is) }
-<<<<<<< HEAD
 	| SOUNDVARIANCE LEFTPAR c =  ID RIGHTPAR 
 	{ SoundVariance(c) }
 	| MUTABLE LEFTPAR c =  ID RIGHTPAR 
 	{ Mutable(c) }
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 	
 

@@ -4,10 +4,7 @@
 The folder "languages" includes the following language definitions:  
 <ul>
 <li> <b>lambda_div_print_1a_1b_2_3.lan</b>: 
-<<<<<<< HEAD
 <li> (We repeat Issue 1a, 1b, and 2 that we tested on <b>lambda_ref_err_1a_1b_2_3.lan</b>. Issue 3 below is newly tested here.)
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 <ul>
 	<li> Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and a print operation that adds strings into a buffer. 
 	<li> Issue 1a: It makes use of call-by-name evaluation and therefore effects are duplicated. Fix: adopt the ordinary call-by-value beta-rule. 
@@ -33,11 +30,7 @@ Proof derivations are printed out in a textual representation. <a href="tests/pr
 
 The following tries to derive that call-by-name parameter passing does not duplicate effects.   
 
-<<<<<<< HEAD
 ./lna TdupEff 'true' lambda_div_print_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
-=======
-./lna 'true' lambda_div_print_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <b>Proof not found</b>. 
 The target of the reduction rule  <b>[CBN-BETA]</b> is  <b>E1[E2/x] </b> and performs a substitution of a possibly effectful term, which may lead to a duplication of effects.
@@ -51,11 +44,7 @@ The target of the reduction rule  <b>[CBN-BETA]</b> is  <b>E1[E2/x] </b> and per
 
 The following tries to derive that the ordinary beta-reduction (call-by-value) does not duplicate effects.   
 
-<<<<<<< HEAD
 ./lna TdupEff 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivation</a> <br /> <br />
 
@@ -67,11 +56,7 @@ output: <a href="tests/lambda_div_print_1aFixed_1b_2_3.proof.txt">proof derivati
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant, but the language definition lacks evaluation context (v E).   
 
-<<<<<<< HEAD
 ./lna Teh 'true' lambda_div_print_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <b>Proof not found</b>. 
 An evaluation context is missing for the following variables used in <b>[BETA]</b>: <b>V</b>.
@@ -85,11 +70,7 @@ An evaluation context is missing for the following variables used in <b>[BETA]</
 
 The following tries to derive that beta-reduction [BETA] is ctx-compliant after we have added the evaluation context (v E).   
 
-<<<<<<< HEAD
 ./lna Teh 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof derivation</a><br /> <br />
 
@@ -101,11 +82,7 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2_3.proof.txt">proof der
 
 The following tries to derive that the language lets 'try' handle the error at its first argument, but the error context 'try F with e' may prevent that.     
 
-<<<<<<< HEAD
 ./lna Teh 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <b>Proof not found</b>. 
 Argument number <b>1</b> of the operator <b>try</b> is subject to an error context and may not handle the error.<br /> <br />
@@ -118,11 +95,7 @@ Argument number <b>1</b> of the operator <b>try</b> is subject to an error conte
 
 The following tries to derive that the language lets 'try' handle the error at its first argument after we have removed the error context 'try F with e'. 
 
-<<<<<<< HEAD
 ./lna Teh 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation</a><br /> <br />
 
@@ -134,11 +107,7 @@ output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3.proof.txt">proo
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, but the typing rule is incorrect and checks T1 <: T3 rather than T3 <: T1.
 
-<<<<<<< HEAD
 ./lna Tvariance 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <b>Proof not found</b>. 
 Typing rule <b>[T-APP-BAD]</b> makes use of <b>T1</b> in contravariant position for arrow in premise <b>Gamma | Sigma |- E1 : (arrow T1
@@ -152,11 +121,7 @@ T2)</b> but the following premises do not respect this contravarince: <b>T1 <: T
 
 The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, after we have fixed the typing rule to check T3 <: T1.
 
-<<<<<<< HEAD
 ./lna Tvariance 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
-=======
-./lna 'true' lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lambda_div_print_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation</a>
 

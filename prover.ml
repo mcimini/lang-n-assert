@@ -11,10 +11,7 @@ let getLastAssertions (l : (proof list)) : assertions = proof_getPost (List.hd l
 let track_failed_premise (a : assertion) (msg : string) = map_of_failures := (a,msg) :: !map_of_failures
 
 let makeInductives (g : grammarLine) (metavar : string) : assertions = 
-<<<<<<< HEAD
 	if not(List.mem teh !theories) then [] else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	match g with GrammarLine(_,option_var,option_ts) -> 
 		if is_none option_var || not(get option_var = metavar) then [] (* else [  NodeIteGr (a,g,a,[])  ] *)
 		else let var = get option_var in let ts = get option_ts in 
@@ -25,10 +22,7 @@ let makeInductives (g : grammarLine) (metavar : string) : assertions =
 *)		
 
 let makeErrors (g : grammarLine) : assertions = 
-<<<<<<< HEAD
 	if not(List.mem terrType !theories) then [] else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	match g with GrammarLine(catname,_,option_ts) -> 
 		if is_none option_ts || not(catname = "Error") then [] (* else [  NodeIteGr (a,g,a,[])  ] *)
 		else let ts = get option_ts in 
@@ -43,10 +37,7 @@ let outputBeforeState r = List.nth (formula_getArguments (rule_getConclusion r))
 
 
 let makeCtx (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem teh !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	if rule_isPredname "step" r && term_isConstr (rule_getInputOfConclusion r) 
 	then 
 		let filtered_args = List.filteri (fun i arg -> 
@@ -59,10 +50,7 @@ let makeCtx (r : rule) (pre : assertions) : proof =
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeErr (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem teh !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	if rule_isPredname "step" r && term_isConstr (rule_getInputOfConclusion r) 
 	then 
 		let filtered_args = List.filteri (fun i arg -> 
@@ -82,18 +70,12 @@ let makeErr (r : rule) (pre : assertions) : proof =
 
 
 let makeEff (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem tdupEff !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	if rule_isPredname "step" r && not(stateSource (rule_getConclusion r) = stateTarget (rule_getConclusion r)) then NodeRule(pre, r, Effectful :: pre, "effectful")
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeNoDupli (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem tdupEff !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	if rule_isPredname "step" r 
 	then (if (List.for_all is_value (args_of_source r)) 
 		 then NodeRule(pre, r, NoDupli(rule_getRulename r) :: pre, "effectual") 
@@ -105,10 +87,7 @@ let makeNoDupli (r : rule) (pre : assertions) : proof =
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeContra (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem tvariance !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	let left = (rule_getInputOfConclusion r) in 
 	let right = (rule_getOutputOfConclusion r) in 
 	if rule_isPredname "subtype" r && term_isConstr left && term_isConstr right then 
@@ -119,10 +98,7 @@ let makeContra (r : rule) (pre : assertions) : proof =
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeInvariant (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem tvariance !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	let left = (rule_getInputOfConclusion r) in 
 	let right = (rule_getOutputOfConclusion r) in 
 	if rule_isPredname "subtype" r && term_isConstr left && term_isConstr right then 
@@ -135,10 +111,7 @@ let makeInvariant (r : rule) (pre : assertions) : proof =
 	
 (* adds contraResp only for the c encountered in output types of premises *)
 let makeContraResp (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem tvariance !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	if rule_isPredname "typeOf" r then 	
 	let outputsWithConstructor = List.filter term_isConstr (List.map lastOutput (rule_getTypingPremises r)) in 
 	let vars_unfiltered = List.concat (List.map (fun t -> List.mapi (fun i arg -> if (assertion_checkContra pre (term_getCNAME t) i) then arg else BoundVar) (term_getArguments t)) outputsWithConstructor) in 
@@ -153,10 +126,7 @@ let makeContraResp (r : rule) (pre : assertions) : proof =
 	else NodeRule(pre, r, pre, "neutral")
 
 let makeErrorAnyType (r : rule) (pre : assertions) : proof = 
-<<<<<<< HEAD
 	if not(List.mem terrType !theories) then NodeRule(pre, r, pre, "neutral") else 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	if rule_isPredname "typeOf" r then 	
 	let varsInTypingPremises = List.concat (List.map term_getVariables (List.map lastOutput (rule_getPremises r))) in 
 	let input = rule_getInputOfConclusion r in 
@@ -166,7 +136,6 @@ let makeErrorAnyType (r : rule) (pre : assertions) : proof =
 		else NodeRule(pre, r, pre, "neutral")
 	else NodeRule(pre, r, pre, "neutral")
 
-<<<<<<< HEAD
 let makeSoundVariance (r : rule) (pre : assertions) : proof = 
 	if not(List.mem tmut !theories) then NodeRule(pre, r, pre, "neutral") else 
 	if rule_isPredname "subtype" r && term_isConstr (rule_getInputOfConclusion r) && term_isConstr (rule_getOutputOfConclusion r) then 
@@ -193,9 +162,6 @@ let makeSoundVariance (r : rule) (pre : assertions) : proof =
 
 let fill_with_all_operators (lan : language) (l : (proof list)) : proof list = 
 	if not(List.mem teh !theories) then l else 
-=======
-let fill_with_all_operators (lan : language) (l : (proof list)) : proof list = 
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	match List.hd l with NodeGr(pres,g,posts) -> 
 	let buildInductiveIfMissing (cname1 : string) : assertions = if (List.filter (fun a -> match a with Inductive("C",(cname2, _)) -> cname1 = cname2 | _ -> false) posts) = [] then [makeInductiveAssertion "C" (cname1,[])] else [] in 
 	let itemsAsOption = language_getGrammarItemsByCategoryButOnlyConstructED lan "Expression" in 
@@ -224,12 +190,8 @@ let prove_rule (l : (proof list)) (r : rule) : (proof list) =
 	let contraRespProof = makeContraResp r (proof_getPost contraProof) in 
 	let errorAnyProof = makeErrorAnyType r (proof_getPost contraRespProof) in 
 	let invariantProof = makeInvariant r (proof_getPost errorAnyProof) in 
-<<<<<<< HEAD
 	let soundVarianceProof = makeSoundVariance r (proof_getPost invariantProof) in 
 	let post = proof_getPost soundVarianceProof in 
-=======
-	let post = proof_getPost invariantProof in 
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	let allProofAttempts = [ctxProof ; errorHandlerProof ; effProof ; noDupliProof ; contraProof ; contraRespProof ; errorAnyProof ; invariantProof] in 
 	    makeIterateRuleProof startingPre r post allProofAttempts :: l
 

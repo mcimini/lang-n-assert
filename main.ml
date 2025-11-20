@@ -34,7 +34,6 @@ let parseAssertion (a : string) : assertion =
    let stringbuf = Lexing.from_string a in 
    let a = try (Parser.commandLine Lexer.token stringbuf) with
  						    | Lexer.Error msg -> raise(Failure("Lexer error: " ^ get_positions stringbuf ^ " with message: " ^ msg))
-<<<<<<< HEAD
  						    | Parser.Error -> raise(Failure("Parser error: " ^ get_positions stringbuf)) 
 	in a
 
@@ -52,22 +51,6 @@ let () = let args = Array.to_list Sys.argv in match args with
 									else (print_endline "Proof not found"; print_endline (safe_list_assoc post (!map_of_failures));) 
 							end
 	| otherwise -> print_endline ("Command line error: example: ./lna theory1 ... theoryn pre file.lan post");
-=======
- 						    | Parser.Error -> raise(Failure("Parser error: " ^ get_positions stringbuf)) in
-       a 
-	   
-
-let () = match Array.to_list Sys.argv with 
-	| [exe ; pre ; lan ; post] -> 
-							let pre = parseAssertion pre in 
-							let lan = parseOneLanguage lan in 
-							let post = parseAssertion post in 
-							let proof = prove [pre] lan post in 
-							if is_some proof 
-								then (print_endline (print_proof (get proof)))
-								else (print_endline "Proof not found"; print_endline (safe_list_assoc post (!map_of_failures));) 
-	| otherwise -> print_endline ("Command line error: example: ./lna pre file.lan post");
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 
 (*

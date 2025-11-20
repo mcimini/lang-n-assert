@@ -17,11 +17,8 @@ type assertion =
 	| Error of cname 
 	| ErrorAnyType of cname 
 	| Invariant of cname * (int list)
-<<<<<<< HEAD
 	| SoundVariance of opname 
 	| Mutable of opname 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 type assertions = assertion list 
 
@@ -34,7 +31,6 @@ type proof =
 	| NodeIteR of assertions * rule * assertions * (proof list)
 	| NodeConsequence of assertions * language * assertions * proof
 
-<<<<<<< HEAD
 (* name of theories *)
 
 let theories : (string list) ref = ref [] 
@@ -48,12 +44,6 @@ let map_of_failures : ((assertion * string) list) ref = ref []
 
 let makeFakeInitialProof (post : assertions) : proof = NodeGr(post,GrammarLine("",None,None),post)
 (* when you did not allow preconditions from the command line: NodeGr([True],GrammarLine("",None,None),[True]) *)
-=======
-
-let map_of_failures : ((assertion * string) list) ref = ref []
-
-let makeFakeInitialProof (post : assertions) : proof = NodeGr([True],GrammarLine("",None,None),[True])
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 let makeInductiveAssertion (metavar : id) (idxs : (cname * (int list))) = Inductive(metavar, idxs)
 let makeErrorAssertion (c :cname) = Error(c)
@@ -107,11 +97,8 @@ let print_assertion (a : assertion) : string = match a with
 	| Error(c) -> "Error(" ^ c ^ ")" 
 	| ErrorAnyType(c) -> "ErrorAnyType(" ^ c ^ ")" 
 	| Invariant(c,is) -> "Invariant(" ^ c ^ ", " ^ mydump(is) ^ ")" 
-<<<<<<< HEAD
 	| SoundVariance(c) -> "SoundVariance(" ^ c ^ ")" 
 	| Mutable(c) -> "Mutable(" ^ c ^ ")" 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	
 
 let print_assertions (asserts : assertions) : string = String.concat " /\\ "(List.map print_assertion asserts)
@@ -136,10 +123,7 @@ let msgNoDupli (r : rule) (t : term) = "The target of the reduction rule [" ^ ru
 let msgCtxCompliant (r : rule) (args : term list) = "An evaluation context is missing for the following variables used in [" ^ rule_getRulename r ^ "]: " ^ String.concat ", " (List.map print_term args) ^ "."
 let msgHandlesError (c : string) (i : int) = "Argument number " ^ string_of_int i ^ " of the operator " ^ c ^ " is subject to an error context and may not handle the error." 
 let msgContraResp (r : rule) (c : string) (premises : formula list) (typingPremises : formula list) = "Typing rule [" ^ rule_getRulename r ^ "] makes use of " ^ print_term (formula_getFirstArg (List.hd premises)) ^ " in contravariant position for " ^ c ^ " in premise " ^ print_formula (premises_search_by_output typingPremises (formula_getFirstArg (List.hd premises))) ^ " but the following premises do not respect this contravarince: " ^ String.concat ", " (List.map print_formula premises) ^ "."
-<<<<<<< HEAD
 let msgSoundVariance (r : rule) (c : string) (t1 : term) (t2 : term) (wrongVarianceMsg : string) = "Subtyping rule [" ^ rule_getRulename r ^ "] declares the argument " ^ print_term t1 ^ wrongVarianceMsg ^ "But " ^ c ^ " is mutable and should be invariant." 
-=======
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 
 

@@ -33,11 +33,7 @@ opam switch import dependencies.txt --switch lnp && eval $(opam env)
 Quick usage: 
 <ul>
 <li> make 
-<<<<<<< HEAD
 <li> ./lna theory_1 ... theory_n precondition file.lan postcondition
-=======
-<li> ./lna precondition file.lan postcondition
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	<br/> (see examples below)
 </ul>
 
@@ -45,11 +41,7 @@ What it does:
 <ul>
 <li> Loads the language definition in file.lan of the folder "languages". 
 <li> Starts from precondition
-<<<<<<< HEAD
 <li> Traverses the language and tries to derive all possible assertions of the theories
-=======
-<li> Traverses the language and tries to derive all possible assertions
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 <li> Output:
 	<ul>
 	<li> if postcondition has been derived: The tool returns a proof derivation of: precondition file.lan postcondition
@@ -69,7 +61,6 @@ Reference guide: See the paper associated with the tool. (<i>Coming Soon</i>)
 
 The following are examples of assertions and their meaning:  
 
-<<<<<<< HEAD
 Theory <b>TdupEff</b>
 <ul>
 <li> <b>NoDupliEff(BETA)</b>: The reduction rule with name [BETA] does not lead to duplicate effects. 
@@ -104,163 +95,15 @@ Theory <b>TerrType</b>
 </ul>
 
 <li> <b>... and more to be added over time ...</b>
-=======
-<ul>
-<li> <b>NoDupliEff(BETA)</b>: The reduction rule with name [BETA] does not lead to duplicate effects. 
-<li> <b>Effectful</b>: The language is effectful, that is, a reduction can modify the state of the computation. 
-<li> <b>Inductive(T,arrow,1,2)</b>: The constructor <b>arrow</b> builds a member of the syntactic category with metavariable <b>T</b> and its first and second arguments are inductive, i.e., they are <b>T</b>s, as well. 
-<li> <b>CtxCompliant(BETA)</b>: A reduction rule is <i>ctx-compliant</i> whenever: if the reduction rule [BETA] defines the behavior of an operator and some of its arguments are required to be values (or errors) for the rule to fire, then evaluation contexts are so defined for those arguments to be evaluated.  
-<li> <b>HandlesError(try,1)</b>: The operator <b>try</b> handles the error at its first argument, and the error contexts for the <b>try</b> operator are so defined to indeed leave the handling of the error to <b>try</b> at runtime. 
-<li> <b>Invariant(refType,1)</b>: The first argument of type constructor <b>refType</b> is invariant.
-<li> <b>Contra(arrow,1)</b>: The first argument of type constructor <b>arrow</b> is contravariant.
-<li> <b>ContraResp(T-APP,arrow)</b>: The typing rule [T-APP] respect the contravariance of the <b>arrow</b> type (function type). 
-<li> <b>ErrorAnyType(error)</b>: The expression contructor <b>error</b> is an error and can be typed at any type. 
-<li> <b>... and more to be added over time ...</b>
-</ul>
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 <br />
 
 # <a name="tests"></a>Tests
 
 <ul>
-<<<<<<< HEAD
 <li> <a href="PAGE_tests_on_lambda_ref_err,md">Tests on "lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
-=======
-<li> <a href="#tests_lambda_ref_err">Tests on "lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 <li> <a href="PAGE_tests_on_lambda_div_print.md">Tests on "lambda_div_print"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and a print operation that adds strings into a buffer). 
 <li> <a href="PAGE_other_tests.md">Other tests</a> 
 </ul>
 
 
-<<<<<<< HEAD
-=======
-# <a name="tests_lambda_ref_err"></a>Tests on "lambda_ref_err"
-
-The folder "languages" includes language definitions: 
-<ul>
-<li> <b>lambda_ref_err_1a_1b_2_3.lan</b>: 
-<ul>
-	<li> Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references. 
-	<li> Issue 1a: It makes use of call-by-name evaluation and therefore effects are duplicated. Fix: adopt the ordinary call-by-value beta-rule. 
-	<li> Issue 1b: Call-by-value beta-rule requires evaluation context for evaluating the argument. Fix: add such evaluation context. 
-	<li> Issue 2: Evaluator may "steal" the error from the try operator rather than letting try handle the error. Fix: Remove the declaration that the first argument of try is an error context. 
-	<li> Issue 3: The typing rule of function application checks subtyping with the wrong direction: It checks that the type of the domain of the function is a subtype of the type of the argument. Fix: switch the direction of that subtyping formula. (That is, the type of the argument must be a subtype of the type of the domain of the function.)
-</ul>
-<li> <b>lambda_ref_err_1aFixed_1b_2_3.lan</b>: Same as previous .lan but where issue 1a is fixed. 
-<li> <b>lambda_ref_err_1aFixed_1bFixed_2_3.lan</b>: Same as previous .lan but where issue 1b is fixed. 
-<li> <b>lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan</b>: Same as previous .lan but where issue 2 is fixed. 
-<li> <b>lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.lan</b>: Same as previous .lan but where issue 3 is fixed, that is, all the issues above are fixed. 
-</ul>
-
-
- <br />
-
-Proof derivations are printed out in a textual representation. <a href="tests/proofs_textual_representation.md">See here how to read them</a>.
-
- <br />
-  <br />
-
-```
--- on lambda_ref_err_1a_1b_2_3.lan of the folder "languages" -- 
-
-The following tries to derive that call-by-name parameter passing does not duplicate effects.   
-
-./lna 'true' lambda_ref_err_1a_1b_2_3.lan 'NoDupliEff(CBN-BETA)'
-```
-output: <b>Proof not found</b>. 
-The target of the reduction rule  <b>[CBN-BETA]</b> is  <b>E1[E2/x] </b> and performs a substitution of a possibly effectful term, which may lead to a duplication of effects.
- <br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1b_2_3.lan of the folder "languages" -- 
-
-The following tries to derive that the ordinary beta-reduction (call-by-value) does not duplicate effects.   
-
-./lna 'true' lambda_ref_err_1aFixed_1b_2_3.lan 'NoDupliEff(BETA)'
-```
-output: <a href="tests/lambda_ref_err_1aFixed_1b_2_3.proof.txt">proof derivation</a> <br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1b_2_3.lan of the folder "languages" -- 
-
-The following tries to derive that beta-reduction [BETA] is ctx-compliant, but the language definition lacks evaluation context (v E).   
-
-./lna 'true' lambda_ref_err_1aFixed_1b_2_3.lan 'CtxCompliant(BETA)'
-```
-output: <b>Proof not found</b>. 
-An evaluation context is missing for the following variables used in <b>[BETA]</b>: <b>V</b>.
-<br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
-
-The following tries to derive that beta-reduction [BETA] is ctx-compliant after we have added the evaluation context (v E).   
-
-./lna 'true' lambda_ref_err_1aFixed_1bFixed_2_3.lan 'CtxCompliant(BETA)'
-```
-output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2_3.proof.txt">proof derivation</a><br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1bFixed_2_3.lan of the folder "languages" -- 
-
-The following tries to derive that the language lets 'try' handle the error at its first argument, but the error context 'try F with e' may prevent that.     
-
-./lna 'true' lambda_ref_err_1aFixed_1bFixed_2_3.lan 'HandlesError(try,1)'
-```
-output: <b>Proof not found</b>. 
-Argument number <b>1</b> of the operator <b>try</b> is subject to an error context and may not handle the error.<br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
-
-The following tries to derive that the language lets 'try' handle the error at its first argument after we have removed the error context 'try F with e'. 
-
-./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'HandlesError(try,1)'
-```
-output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2Fixed_3.proof.txt">proof derivation</a><br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan of the folder "languages" -- 
-
-The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, but the typing rule is incorrect and checks T1 <: T3 rather than T3 <: T1.
-
-./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'ContraResp(T-APP-BAD,arrow)'
-```
-output: <b>Proof not found</b>. 
-Typing rule <b>[T-APP-BAD]</b> makes use of <b>T1</b> in contravariant position for arrow in premise <b>Gamma | Sigma |- E1 : (arrow T1
-T2)</b> but the following premises do not respect this contravarince: <b>T1 <: T3</b>.<br /> <br />
-
-
-
-
-```
--- on lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.lan of the folder "languages" -- 
-
-The following tries to derive that the typing rule of function application respects the contravariance of the domain of the function type, after we have fixed the typing rule to check T3 <: T1.
-
-./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.lan 'ContraResp(T-APP,arrow)'
-```
-output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation</a>
-
-
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d

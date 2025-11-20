@@ -22,13 +22,8 @@ ErrContext F ::= [] | (div F E) | (div V F) | (plus F E) | (plus V F) | (app F E
 [S-ARROW]
 (arrow T1 T2) <: (arrow T3 T4) <== T3 <: T1 /\ T2 <: T4.
 
-<<<<<<< HEAD
 [S-REF-BAD]
 (refType T1) <: (refType T2) <== T1 <: T2. 
-=======
-[S-REF]
-(refType T) <: (refType T).
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 [T-INT] 
 Sigma | Gamma |- (num N) : (int).
@@ -40,22 +35,13 @@ Sigma | Gamma |- (float F) : (float).
 Sigma | Gamma |- (div E1 E2) : (int) <== Gamma |- E1 : (int) /\ Gamma |- E2 : (int).
 
 [T-PLUS]
-<<<<<<< HEAD
 Sigma | Gamma |- (plus E1 E2) : (int) <== Gamma |- E1 : (int) /\ Gamma |- E2 : (int).
-=======
-Sigma | Gamma |- (div E1 E2) : (int) <== Gamma |- E1 : (int) /\ Gamma |- E2 : (int).
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 [T-ABS]
 Sigma | Gamma |- (abs T1 R) : (arrow T1 T2) <== Gamma, x : T1 | Sigma |- R : T2.
 
-<<<<<<< HEAD
 [T-APP]
 Sigma | Gamma |- (app E1 E2) : T2 <== Sigma | Gamma |- E1 : (arrow T1 T2) /\ Sigma | Gamma |- E2 : T1.
-=======
-[T-APP-BAD]
-Sigma | Gamma |- (app E1 E2) : T2 <== Sigma | Gamma |- E1 : (arrow T1 T2) /\ Sigma | Gamma |- E2 : T3  /\ T1 <: T3.
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 [T-UNIT] 
 Sigma | Gamma |- (unit) : (unitType).
@@ -79,11 +65,7 @@ Sigma | Gamma |- (seq E1 E2) : T2 <== Sigma | Gamma |- E1 : T1 /\ Sigma | Gamma 
 Sigma | Gamma |- (error) : T. 
 
 [T-TRY]
-<<<<<<< HEAD
 Sigma | Gamma |- (try E1 E2) : T <== Sigma | Gamma |- E1 : T /\ Sigma | Gamma |- E2 : T. 
-=======
-Sigma | Gamma |- (try E1 E2) : Tj <== Sigma | Gamma |- E1 : T1 /\ Sigma | Gamma |- E2 : T2  /\ (join T1 T2 Tj). 
->>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 
 [CBN-BETA]
