@@ -1,4 +1,4 @@
-# Lang-n-Assert: A Prover for Language Logics!
+# Lang-n-Assert: A Prover for Language Logics
 
 Author: Matteo Cimini (matteo_cimini@uml.edu)
 
