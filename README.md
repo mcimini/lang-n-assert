@@ -101,7 +101,8 @@ Theory <b>TerrType</b>
 # <a name="tests"></a>Tests
 
 <ul>
-<li> <a href="PAGE_tests_on_lambda_ref_err,md">Tests on "lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
+<li> <a href="PAGE_tests_on_lambda_ref_err.md">Tests on 
+"lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
 <li> <a href="PAGE_tests_on_lambda_div_print.md">Tests on "lambda_div_print"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and a print operation that adds strings into a buffer). 
 <li> <a href="PAGE_other_tests.md">Other tests</a> 
 </ul>
