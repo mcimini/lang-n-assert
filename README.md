@@ -45,7 +45,7 @@ What it does:
 <li> Output:
 	<ul>
 	<li> if postcondition has been derived: The tool returns a proof derivation of: precondition file.lan postcondition
-	<li> if postcondition has not been derived: The tool displays the error message "<i>Proof not found</i>". 
+	<li> if postcondition has not been derived: The tool displays "<i>Proof not found</i>" and an error message. 
 	</ul>
 </ul>
 
@@ -94,7 +94,7 @@ Theory <b>TerrType</b>
 <li> <b>ErrorAnyType(error)</b>: The expression contructor <b>error</b> is an error and can be typed at any type. 
 </ul>
 
-<li> <b>... and more to be added over time ...</b>
+ <b>... and more to be added over time ...</b>
 
 <br />
 
