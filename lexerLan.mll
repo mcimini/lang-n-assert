@@ -44,6 +44,10 @@ rule token = parse
   | "value" { VALUEPRED }
   | "%" { DIRECTIVE }
   | "<:" { SUBTYPING }
+<<<<<<< HEAD
+  | "=" { EQUAL }
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
   | idLOW             { VARLEX (Lexing.lexeme lexbuf) }
   | idUP             { VARTERM (Lexing.lexeme lexbuf) }
   | eof             { EOF }

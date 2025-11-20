@@ -3,11 +3,19 @@
 
 type token = 
   | TRUE
+<<<<<<< HEAD
+  | SOUNDVARIANCE
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
   | RIGHTSQUARE
   | RIGHTPAR
   | QUOTE
   | NUM of (string)
   | NODUPLI
+<<<<<<< HEAD
+  | MUTABLE
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
   | LEFTSQUARE
   | LEFTPAR
   | INVARIANT

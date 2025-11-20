@@ -10,7 +10,11 @@
 Same test as before: laziness of lists.    
 We asks whether cons has no evaluation contexts. 
 
+<<<<<<< HEAD
+./lna Teh 'true' lists_lazy.lan 'Inductive(C,cons,)'     
+=======
 ./lna 'true' lists_lazy.lan 'Inductive(C,cons,)'     
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
 ```
 output: <a href="tests/lists_lazy.proof.txt">proof derivation</a><br /> <br />
@@ -25,7 +29,11 @@ This language definition contains lazy pairs.
 Lang-n-assert can detect that pairs are lazy. To show a different test from the previous one, we base our test on the fact that terms (pair E E) are values for lazy pairs rather than (pair V V). 
 The following asks for a proof derivation that the grammar production for 'pair' in the grammar of values is not inductive. 
 
+<<<<<<< HEAD
+./lna Teh 'true' pairs_lazy.lan 'Inductive(V,pair,)' 
+=======
 ./lna 'true' pairs_lazy.lan 'Inductive(V,pair,)' 
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 (Nothing after the last comma means 'no indices of argument positions are inductive'.)
 ```
 output: <a href="tests/pairs_lazy.proof.txt">proof derivation</a><br /> <br />
@@ -40,7 +48,11 @@ Lang-n-assert can answer the question: 'Does my language contain inductive types
 It is enough to produce a proof for an assertion 'Inductive' for the metavariable T (of types) for a type constructor. 
 For example, the simply typed lambda-calculus does have inductive types due to the function type: 
 
+<<<<<<< HEAD
+./lna Teh 'true' lambda_stlc.lan 'Inductive(T,arrow,1,2)'
+=======
 ./lna 'true' lambda_stlc.lan 'Inductive(T,arrow,1,2)'
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lambda_stlc_inductiveTypes.proof.txt">proof derivation</a><br /> <br />
 
@@ -55,7 +67,11 @@ Therefore, [R-FST] needs the evaluation context (fst C) to be 'ctx-compliant', w
 
 The following asks for a proof derivation that [R-FST] is 'ctx-compliant'
 
+<<<<<<< HEAD
+./lna Teh 'true' pairs_lazy.lan 'CtxCompliant(R-FST)'          
+=======
 ./lna 'true' pairs_lazy.lan 'CtxCompliant(R-FST)'          
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/pairs_fst_ctxCompliant.proof.txt">proof derivation</a><br /> <br />
 
@@ -69,7 +85,11 @@ Therefore, [R-HEAD] needs the evaluation context (head C) to be 'ctx-compliant',
 
 The following asks for a proof derivation that [R-HEAD] is 'ctx-compliant'
 
+<<<<<<< HEAD
+./lna Teh 'true' lists_lazy.lan 'CtxCompliant(R-HEAD)'          
+=======
 ./lna 'true' lists_lazy.lan 'CtxCompliant(R-HEAD)'          
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lists_head_ctxCompliant.proof.txt">proof derivation</a><br /> <br />
 
@@ -85,12 +105,18 @@ On the fixed language with references from the main tests.
 
 The following asks for a proof derivation that the error 'error' can be typed at any type. 
 
+<<<<<<< HEAD
+./lna TerrType 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'ErrorAnyType(error)'
+=======
 ./lna 'true' lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan 'ErrorAnyType(error)'
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ```
 output: <a href="tests/lambda_ref_err_error_any_type.proof.txt">proof derivation</a><br /> <br />
 
 
 
+<<<<<<< HEAD
+=======
 
 
 ```
@@ -104,3 +130,4 @@ The following asks for a proof derivation that the reference type refType is inv
 ```
 output: <a href="tests/lambda_ref_err_refType_invariant.proof.txt">proof derivation</a><br /> <br />
 
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d

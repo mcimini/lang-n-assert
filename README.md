@@ -33,7 +33,11 @@ opam switch import dependencies.txt --switch lnp && eval $(opam env)
 Quick usage: 
 <ul>
 <li> make 
+<<<<<<< HEAD
+<li> ./lna theory_1 ... theory_n precondition file.lan postcondition
+=======
 <li> ./lna precondition file.lan postcondition
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 	<br/> (see examples below)
 </ul>
 
@@ -41,7 +45,11 @@ What it does:
 <ul>
 <li> Loads the language definition in file.lan of the folder "languages". 
 <li> Starts from precondition
+<<<<<<< HEAD
+<li> Traverses the language and tries to derive all possible assertions of the theories
+=======
 <li> Traverses the language and tries to derive all possible assertions
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 <li> Output:
 	<ul>
 	<li> if postcondition has been derived: The tool returns a proof derivation of: precondition file.lan postcondition
@@ -61,6 +69,42 @@ Reference guide: See the paper associated with the tool. (<i>Coming Soon</i>)
 
 The following are examples of assertions and their meaning:  
 
+<<<<<<< HEAD
+Theory <b>TdupEff</b>
+<ul>
+<li> <b>NoDupliEff(BETA)</b>: The reduction rule with name [BETA] does not lead to duplicate effects. 
+<li> <b>Effectful</b>: The language is effectful, that is, a reduction can modify the state of the computation. 
+</ul>
+
+Theory <b>Teh</b>
+<ul>
+<li> <b>Inductive(T,arrow,1,2)</b>: The constructor <b>arrow</b> builds a member of the syntactic category with metavariable <b>T</b> and its first and second arguments are inductive, i.e., they are <b>T</b>s, as well. 
+<li> <b>CtxCompliant(BETA)</b>: A reduction rule is <i>ctx-compliant</i> whenever: if the reduction rule [BETA] defines the behavior of an operator and some of its arguments are required to be values (or errors) for the rule to fire, then evaluation contexts are so defined for those arguments to be evaluated.  
+<li> <b>HandlesError(try,1)</b>: The operator <b>try</b> handles the error at its first argument, and the error contexts for the <b>try</b> operator are so defined to indeed leave the handling of the error to <b>try</b> at runtime. 
+</ul>
+
+Theory <b>Tmut</b>
+<ul>
+<li> <b>Mutable(c)</b>: The type constructor <b>c</b> is for mutable data. 
+<li> <b>SoundVariance(c)</b>: If the type constructor <b>c</b> is for mutable data, then its subtyping rule treats <b>c</b> as invariant. 
+</ul>
+
+
+
+Theory <b>Tvariance</b>
+<ul>
+<li> <b>Invariant(refType,1)</b>: The first argument of type constructor <b>refType</b> is invariant.
+<li> <b>Contra(arrow,1)</b>: The first argument of type constructor <b>arrow</b> is contravariant.
+<li> <b>ContraResp(T-APP,arrow)</b>: The typing rule [T-APP] respect the contravariance of the <b>arrow</b> type (function type). 
+</ul>
+
+Theory <b>TerrType</b>
+<ul>
+<li> <b>ErrorAnyType(error)</b>: The expression contructor <b>error</b> is an error and can be typed at any type. 
+</ul>
+
+<li> <b>... and more to be added over time ...</b>
+=======
 <ul>
 <li> <b>NoDupliEff(BETA)</b>: The reduction rule with name [BETA] does not lead to duplicate effects. 
 <li> <b>Effectful</b>: The language is effectful, that is, a reduction can modify the state of the computation. 
@@ -73,18 +117,25 @@ The following are examples of assertions and their meaning:
 <li> <b>ErrorAnyType(error)</b>: The expression contructor <b>error</b> is an error and can be typed at any type. 
 <li> <b>... and more to be added over time ...</b>
 </ul>
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 <br />
 
 # <a name="tests"></a>Tests
 
 <ul>
+<<<<<<< HEAD
+<li> <a href="PAGE_tests_on_lambda_ref_err,md">Tests on "lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
+=======
 <li> <a href="#tests_lambda_ref_err">Tests on "lambda_ref_err"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and references).  
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 <li> <a href="PAGE_tests_on_lambda_div_print.md">Tests on "lambda_div_print"</a> (Lambda-calculus with integers, floating points, subtyping, a simple try error handler, and a print operation that adds strings into a buffer). 
 <li> <a href="PAGE_other_tests.md">Other tests</a> 
 </ul>
 
 
+<<<<<<< HEAD
+=======
 # <a name="tests_lambda_ref_err"></a>Tests on "lambda_ref_err"
 
 The folder "languages" includes language definitions: 
@@ -212,3 +263,4 @@ The following tries to derive that the typing rule of function application respe
 output: <a href="tests/lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed.proof.txt">proof derivation</a>
 
 
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d

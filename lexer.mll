@@ -31,6 +31,11 @@ rule token = parse
   | "Error"               { ERROR }
   | "ErrorAnyType"               { ERRORANY }
   | "Invariant"               { INVARIANT }
+<<<<<<< HEAD
+  | "SoundVariance"               { SOUNDVARIANCE }
+  | "Mutable"               { MUTABLE }
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
   | "(" { LEFTPAR }
   | ")" { RIGHTPAR }
   | "[" { LEFTSQUARE }

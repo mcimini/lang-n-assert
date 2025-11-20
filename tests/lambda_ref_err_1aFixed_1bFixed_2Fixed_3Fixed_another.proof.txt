@@ -1,0 +1,130 @@
+Reading the language: languages/lambda_ref_err_1aFixed_1bFixed_2Fixed_3Fixed_another.lan
+[Tag10 ("refType")]--int[Tag10 ("refType")]--int[Tag10 ("refType")]--float[Tag10 ("refType")]--unitType[Tag10 ("refType")]--arrow{ Mutable(refType) } Type { Mutable(refType) } 
+
+ { Mutable(refType) } Value { Mutable(refType) } 
+
+ { Mutable(refType) } Error { Mutable(refType) } 
+
+ { Mutable(refType) } Context { Mutable(refType) } 
+
+ { Mutable(refType) } ErrContext { Mutable(refType) } 
+
+ 
+---- (ITERATE)
+{ Mutable(refType) } S-INT-FLOAT { Mutable(refType) } 
+
+ 
+---- (ITERATE)
+{ Mutable(refType) } S-REFL-INT { Mutable(refType) } 
+
+ 
+---- (ITERATE)
+{ Mutable(refType) } S-REFL-FLOAT { Mutable(refType) } 
+
+ 
+---- (ITERATE)
+{ Mutable(refType) } S-REFL-UNIT { Mutable(refType) } 
+
+ 
+---- (ITERATE)
+{ Mutable(refType) } S-ARROW { Mutable(refType) } 
+
+ 
+---- (ITERATE)
+{ Mutable(refType) } S-REF-ANOTHER { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-INT { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-FLOAT { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-DIV { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-PLUS { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ABS { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-APP { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-UNIT { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-LABEL { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-REF { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-DEREF { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ASSIGN { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-SEQ { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ERROR { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-TRY { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  BETA { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-REF { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-DEREF { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-ASSIGN { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-SEQ { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-DIV { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-PLUS { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  TRY { SoundVariance(refType) /\ Mutable(refType) } 
+
+ 
+---- (ITERATE)
+ preconditions  ERR { SoundVariance(refType) /\ Mutable(refType) }
+---- (LAN)
+{ Mutable(refType) } (G,I) { SoundVariance(refType) /\ Mutable(refType) }
+---- (CONSEQUENCE)
+{ Mutable(refType) } (G,I) { SoundVariance(refType) }

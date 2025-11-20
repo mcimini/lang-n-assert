@@ -1,3 +1,101 @@
+<<<<<<< HEAD
+Reading the language: languages/lambda_div_print_1aFixed_1b_2_3.lan
+{ true } Type { true } 
+
+ { true } Value { true } 
+
+ { true } Error { true } 
+
+ { true } Context { true } 
+
+ { true } ErrContext { true } 
+
+ 
+---- (ITERATE)
+{ true } S-INT-FLOAT { true } 
+
+ 
+---- (ITERATE)
+{ true } S-REFL-INT { true } 
+
+ 
+---- (ITERATE)
+{ true } S-REFL-FLOAT { true } 
+
+ 
+---- (ITERATE)
+{ true } S-REFL-UNIT { true } 
+
+ 
+---- (ITERATE)
+{ true } S-ARROW { true } 
+
+ 
+---- (ITERATE)
+{ true } T-INT { true } 
+
+ 
+---- (ITERATE)
+{ true } T-FLOAT { true } 
+
+ 
+---- (ITERATE)
+{ true } T-DIV { true } 
+
+ 
+---- (ITERATE)
+{ true } T-ABS { true } 
+
+ 
+---- (ITERATE)
+{ true } T-APP-BAD { true } 
+
+ 
+---- (ITERATE)
+{ true } T-UNITT { true } 
+
+ 
+---- (ITERATE)
+{ true } T-PRINT { true } 
+
+ 
+---- (ITERATE)
+{ true } T-ERROR { true } 
+
+ 
+---- (ITERATE)
+{ true } T-SEQ { true } 
+
+ 
+---- (ITERATE)
+{ true } T-TRY { true } 
+
+ 
+---- (ITERATE)
+{ true } BETA { NoDupli(BETA) /\ true } 
+
+ 
+---- (ITERATE)
+ preconditions  SEQ { NoDupli(SEQ) /\ NoDupli(BETA) /\ true } 
+
+ 
+---- (ITERATE)
+ preconditions  DIV { NoDupli(DIV) /\ NoDupli(SEQ) /\ NoDupli(BETA) /\ true } 
+
+ 
+---- (ITERATE)
+ preconditions  PRINT { NoDupli(PRINT) /\ Effectful /\ NoDupli(DIV) /\ NoDupli(SEQ) /\ NoDupli(BETA) /\ true } 
+
+ 
+---- (ITERATE)
+ preconditions  TRY { NoDupli(TRY) /\ NoDupli(PRINT) /\ Effectful /\ NoDupli(DIV) /\ NoDupli(SEQ) /\ NoDupli(BETA) /\ true } 
+
+ 
+---- (ITERATE)
+ preconditions  ERR { NoDupli(ERR) /\ NoDupli(TRY) /\ NoDupli(PRINT) /\ Effectful /\ NoDupli(DIV) /\ NoDupli(SEQ) /\ NoDupli(BETA) /\ true }
+---- (LAN)
+{ true } (G,I) { NoDupli(ERR) /\ NoDupli(TRY) /\ NoDupli(PRINT) /\ Effectful /\ NoDupli(DIV) /\ NoDupli(SEQ) /\ NoDupli(BETA) /\ true }
+=======
 { true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, unitt, []) } 
 
   preconditions  Value { true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, unitt, []) /\ Inductive(V, num, []) /\ Inductive(V, float, []) /\ Inductive(V, abs, []) /\ Inductive(V, unit, []) } 
@@ -93,5 +191,6 @@
  preconditions  ERR { NoDupli(ERR) /\ CtxCompliant(ERR) /\ NoDupli(TRY) /\ CtxCompliant(TRY) /\ NoDupli(PRINT) /\ Effectful /\ CtxCompliant(PRINT) /\ NoDupli(DIV) /\ CtxCompliant(DIV) /\ NoDupli(SEQ) /\ CtxCompliant(SEQ) /\ NoDupli(BETA) /\ ContraResp(T-TRY, arrow) /\ ContraResp(T-SEQ, arrow) /\ ContraResp(T-ERROR, arrow) /\ ContraResp(T-PRINT, arrow) /\ ContraResp(T-UNITT, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-DIV, arrow) /\ ContraResp(T-FLOAT, arrow) /\ ContraResp(T-INT, arrow) /\ Contra(arrow, [1]) /\ Contra(unitt, []) /\ Contra(float, []) /\ Contra(int, []) /\ Contra(int, []) /\ true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, unitt, []) /\ Inductive(V, num, []) /\ Inductive(V, float, []) /\ Inductive(V, abs, []) /\ Inductive(V, unit, []) /\ Inductive(C, div, [1]) /\ Inductive(C, div, [2]) /\ Inductive(C, app, [1]) /\ Inductive(C, seq, [1]) /\ Inductive(C, try, [1]) /\ Inductive(F, div, [1]) /\ Inductive(F, div, [2]) /\ Inductive(F, app, [1]) /\ Inductive(F, app, [2]) /\ Inductive(F, seq, [1]) /\ Inductive(F, try, [1]) /\ Inductive(C, num, []) /\ Inductive(C, float, []) /\ Inductive(C, abs, []) /\ Inductive(C, unit, []) /\ Inductive(C, print, []) /\ Inductive(C, error, []) }
 ---- (LAN)
 { true } (G,I) { NoDupli(ERR) /\ CtxCompliant(ERR) /\ NoDupli(TRY) /\ CtxCompliant(TRY) /\ NoDupli(PRINT) /\ Effectful /\ CtxCompliant(PRINT) /\ NoDupli(DIV) /\ CtxCompliant(DIV) /\ NoDupli(SEQ) /\ CtxCompliant(SEQ) /\ NoDupli(BETA) /\ ContraResp(T-TRY, arrow) /\ ContraResp(T-SEQ, arrow) /\ ContraResp(T-ERROR, arrow) /\ ContraResp(T-PRINT, arrow) /\ ContraResp(T-UNITT, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-DIV, arrow) /\ ContraResp(T-FLOAT, arrow) /\ ContraResp(T-INT, arrow) /\ Contra(arrow, [1]) /\ Contra(unitt, []) /\ Contra(float, []) /\ Contra(int, []) /\ Contra(int, []) /\ true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, unitt, []) /\ Inductive(V, num, []) /\ Inductive(V, float, []) /\ Inductive(V, abs, []) /\ Inductive(V, unit, []) /\ Inductive(C, div, [1]) /\ Inductive(C, div, [2]) /\ Inductive(C, app, [1]) /\ Inductive(C, seq, [1]) /\ Inductive(C, try, [1]) /\ Inductive(F, div, [1]) /\ Inductive(F, div, [2]) /\ Inductive(F, app, [1]) /\ Inductive(F, app, [2]) /\ Inductive(F, seq, [1]) /\ Inductive(F, try, [1]) /\ Inductive(C, num, []) /\ Inductive(C, float, []) /\ Inductive(C, abs, []) /\ Inductive(C, unit, []) /\ Inductive(C, print, []) /\ Inductive(C, error, []) }
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ---- (CONSEQUENCE)
 { true } (G,I) { NoDupli(BETA) }

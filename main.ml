@@ -34,6 +34,25 @@ let parseAssertion (a : string) : assertion =
    let stringbuf = Lexing.from_string a in 
    let a = try (Parser.commandLine Lexer.token stringbuf) with
  						    | Lexer.Error msg -> raise(Failure("Lexer error: " ^ get_positions stringbuf ^ " with message: " ^ msg))
+<<<<<<< HEAD
+ 						    | Parser.Error -> raise(Failure("Parser error: " ^ get_positions stringbuf)) 
+	in a
+
+let () = let args = Array.to_list Sys.argv in match args with 
+	| (exe :: theory :: _ :: _ :: _ :: rest) -> (* at least 5 spots, at least: exe theory1 pre lan post, with one theory being loaded *)
+							let argsReversedWithoutExe = List.rev (List.tl args) in (* List.rev to have the fixed info (pre lan post) at the beginnig and the arbitrary long theories all at the end *)
+							begin match argsReversedWithoutExe with (post :: lan :: pre :: theoriesFromCommand) ->  
+								let pre = parseAssertion pre in 
+								let lan = parseOneLanguage lan in 
+								let post = parseAssertion post in 
+								let _ = theories := List.rev theoriesFromCommand in (* List.rev to get them back to the order specified in the command line *)
+								let proof = prove [pre] lan post in 
+								if is_some proof 
+									then (print_endline (print_proof (get proof)))
+									else (print_endline "Proof not found"; print_endline (safe_list_assoc post (!map_of_failures));) 
+							end
+	| otherwise -> print_endline ("Command line error: example: ./lna theory1 ... theoryn pre file.lan post");
+=======
  						    | Parser.Error -> raise(Failure("Parser error: " ^ get_positions stringbuf)) in
        a 
 	   
@@ -48,6 +67,7 @@ let () = match Array.to_list Sys.argv with
 								then (print_endline (print_proof (get proof)))
 								else (print_endline "Proof not found"; print_endline (safe_list_assoc post (!map_of_failures));) 
 	| otherwise -> print_endline ("Command line error: example: ./lna pre file.lan post");
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 
 
 (*

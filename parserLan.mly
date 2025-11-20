@@ -28,6 +28,10 @@
 %token VALUEPRED 
 %token DIRECTIVE 
 %token SUBTYPING 
+<<<<<<< HEAD
+%token EQUAL 
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
  
 %token LABELEDSTEP 
 %token NOSTEP 
@@ -96,6 +100,11 @@ formula :
     { Formula(predname, ts) }
   | t1 = term SUBTYPING t2 = term 
     { Formula("subtype", [t1 ; t2]) }
+<<<<<<< HEAD
+    | t1 = term EQUAL t2 = term 
+      { Formula("equal", [t1 ; t2]) }
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
   | assumptions = separated_list(MID, assumption) TURNSTYLE t1 = term COLON t2 = term
     { Formula("typeOf", assumptions @ [t1 ; t2]) }
 

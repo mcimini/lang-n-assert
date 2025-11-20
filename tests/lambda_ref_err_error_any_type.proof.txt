@@ -1,3 +1,133 @@
+<<<<<<< HEAD
+Reading the language: languages/lambda_ref_err_1aFixed_1bFixed_2Fixed_3.lan
+{ true } Type { true } 
+
+ { true } Value { true } 
+
+ { true } Error { true /\ Error(error) } 
+
+  preconditions  Context { true /\ Error(error) } 
+
+  preconditions  ErrContext { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  S-INT-FLOAT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  S-REFL-INT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  S-REFL-FLOAT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  S-REFL-UNIT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  S-ARROW { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  S-REF-BAD { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-INT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-FLOAT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-DIV { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-PLUS { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ABS { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-APP { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-UNIT { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-LABEL { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-REF { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-DEREF { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ASSIGN { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-SEQ { true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-ERROR { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-TRY { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  BETA { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-REF { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-DEREF { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-ASSIGN { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-SEQ { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-DIV { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-PLUS { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  TRY { ErrorAnyType(error) /\ true /\ Error(error) } 
+
+ 
+---- (ITERATE)
+ preconditions  ERR { ErrorAnyType(error) /\ true /\ Error(error) }
+---- (LAN)
+{ true } (G,I) { ErrorAnyType(error) /\ true /\ Error(error) }
+=======
 { true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, refType, [1]) /\ Inductive(T, unitType, []) } 
 
   preconditions  Value { true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, refType, [1]) /\ Inductive(T, unitType, []) /\ Inductive(V, num, []) /\ Inductive(V, float, []) /\ Inductive(V, abs, []) /\ Inductive(V, unit, []) /\ Inductive(V, label, []) } 
@@ -127,5 +257,6 @@
  preconditions  ERR { NoDupli(ERR) /\ HandlesError(try, 1) /\ CtxCompliant(ERR) /\ NoDupli(TRY) /\ CtxCompliant(TRY) /\ NoDupli(R-PLUS) /\ CtxCompliant(R-PLUS) /\ NoDupli(R-DIV) /\ CtxCompliant(R-DIV) /\ NoDupli(R-SEQ) /\ CtxCompliant(R-SEQ) /\ NoDupli(R-ASSIGN) /\ Effectful /\ CtxCompliant(R-ASSIGN) /\ NoDupli(R-DEREF) /\ CtxCompliant(R-DEREF) /\ NoDupli(R-REF) /\ CtxCompliant(R-REF) /\ NoDupli(BETA) /\ CtxCompliant(BETA) /\ ContraResp(T-TRY, arrow) /\ ErrorAnyType(error) /\ ContraResp(T-ERROR, arrow) /\ ContraResp(T-SEQ, arrow) /\ ContraResp(T-ASSIGN, arrow) /\ ContraResp(T-DEREF, arrow) /\ ContraResp(T-REF, arrow) /\ ContraResp(T-LABEL, arrow) /\ ContraResp(T-UNIT, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-PLUS, arrow) /\ ContraResp(T-DIV, arrow) /\ ContraResp(T-FLOAT, arrow) /\ ContraResp(T-INT, arrow) /\ Invariant(refType, [1]) /\ Contra(refType, []) /\ Invariant(arrow, []) /\ Contra(arrow, [1]) /\ Invariant(unitType, []) /\ Contra(unitType, []) /\ Invariant(float, []) /\ Contra(float, []) /\ Invariant(int, []) /\ Contra(int, []) /\ Invariant(int, []) /\ Contra(int, []) /\ true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, refType, [1]) /\ Inductive(T, unitType, []) /\ Inductive(V, num, []) /\ Inductive(V, float, []) /\ Inductive(V, abs, []) /\ Inductive(V, unit, []) /\ Inductive(V, label, []) /\ Error(error) /\ Inductive(C, div, [1]) /\ Inductive(C, div, [2]) /\ Inductive(C, plus, [1]) /\ Inductive(C, plus, [2]) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) /\ Inductive(C, ref, [1]) /\ Inductive(C, deref, [1]) /\ Inductive(C, assign, [1]) /\ Inductive(C, assign, [2]) /\ Inductive(C, seq, [1]) /\ Inductive(C, try, [1]) /\ Inductive(F, div, [1]) /\ Inductive(F, div, [2]) /\ Inductive(F, plus, [1]) /\ Inductive(F, plus, [2]) /\ Inductive(F, app, [1]) /\ Inductive(F, app, [2]) /\ Inductive(F, ref, [1]) /\ Inductive(F, deref, [1]) /\ Inductive(F, assign, [1]) /\ Inductive(F, assign, [2]) /\ Inductive(F, seq, [1]) /\ Inductive(C, num, []) /\ Inductive(C, float, []) /\ Inductive(C, abs, []) /\ Inductive(C, unit, []) /\ Inductive(C, label, []) /\ Inductive(C, error, []) }
 ---- (LAN)
 { true } (G,I) { NoDupli(ERR) /\ HandlesError(try, 1) /\ CtxCompliant(ERR) /\ NoDupli(TRY) /\ CtxCompliant(TRY) /\ NoDupli(R-PLUS) /\ CtxCompliant(R-PLUS) /\ NoDupli(R-DIV) /\ CtxCompliant(R-DIV) /\ NoDupli(R-SEQ) /\ CtxCompliant(R-SEQ) /\ NoDupli(R-ASSIGN) /\ Effectful /\ CtxCompliant(R-ASSIGN) /\ NoDupli(R-DEREF) /\ CtxCompliant(R-DEREF) /\ NoDupli(R-REF) /\ CtxCompliant(R-REF) /\ NoDupli(BETA) /\ CtxCompliant(BETA) /\ ContraResp(T-TRY, arrow) /\ ErrorAnyType(error) /\ ContraResp(T-ERROR, arrow) /\ ContraResp(T-SEQ, arrow) /\ ContraResp(T-ASSIGN, arrow) /\ ContraResp(T-DEREF, arrow) /\ ContraResp(T-REF, arrow) /\ ContraResp(T-LABEL, arrow) /\ ContraResp(T-UNIT, arrow) /\ ContraResp(T-ABS, arrow) /\ ContraResp(T-PLUS, arrow) /\ ContraResp(T-DIV, arrow) /\ ContraResp(T-FLOAT, arrow) /\ ContraResp(T-INT, arrow) /\ Invariant(refType, [1]) /\ Contra(refType, []) /\ Invariant(arrow, []) /\ Contra(arrow, [1]) /\ Invariant(unitType, []) /\ Contra(unitType, []) /\ Invariant(float, []) /\ Contra(float, []) /\ Invariant(int, []) /\ Contra(int, []) /\ Invariant(int, []) /\ Contra(int, []) /\ true /\ Inductive(T, int, []) /\ Inductive(T, float, []) /\ Inductive(T, arrow, [1; 2]) /\ Inductive(T, refType, [1]) /\ Inductive(T, unitType, []) /\ Inductive(V, num, []) /\ Inductive(V, float, []) /\ Inductive(V, abs, []) /\ Inductive(V, unit, []) /\ Inductive(V, label, []) /\ Error(error) /\ Inductive(C, div, [1]) /\ Inductive(C, div, [2]) /\ Inductive(C, plus, [1]) /\ Inductive(C, plus, [2]) /\ Inductive(C, app, [1]) /\ Inductive(C, app, [2]) /\ Inductive(C, ref, [1]) /\ Inductive(C, deref, [1]) /\ Inductive(C, assign, [1]) /\ Inductive(C, assign, [2]) /\ Inductive(C, seq, [1]) /\ Inductive(C, try, [1]) /\ Inductive(F, div, [1]) /\ Inductive(F, div, [2]) /\ Inductive(F, plus, [1]) /\ Inductive(F, plus, [2]) /\ Inductive(F, app, [1]) /\ Inductive(F, app, [2]) /\ Inductive(F, ref, [1]) /\ Inductive(F, deref, [1]) /\ Inductive(F, assign, [1]) /\ Inductive(F, assign, [2]) /\ Inductive(F, seq, [1]) /\ Inductive(C, num, []) /\ Inductive(C, float, []) /\ Inductive(C, abs, []) /\ Inductive(C, unit, []) /\ Inductive(C, label, []) /\ Inductive(C, error, []) }
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ---- (CONSEQUENCE)
 { true } (G,I) { ErrorAnyType(error) }

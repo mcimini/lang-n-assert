@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+Reading the language: languages/pairs_lazy.lan
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 { true } Type { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) } 
 
   preconditions  Value { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) } 
@@ -8,6 +12,31 @@
 
  
 ---- (ITERATE)
+<<<<<<< HEAD
+ preconditions  T-INT { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-PAIR { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-FST { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  T-SND { true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-FST { CtxCompliant(R-FST) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) } 
+
+ 
+---- (ITERATE)
+ preconditions  R-SND { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) }
+---- (LAN)
+{ true } (G,I) { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) }
+=======
  preconditions  T-INT { ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) } 
 
  
@@ -31,5 +60,6 @@
  preconditions  R-SND { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ ContraResp(T-SND, arrow) /\ ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) }
 ---- (LAN)
 { true } (G,I) { CtxCompliant(R-SND) /\ CtxCompliant(R-FST) /\ ContraResp(T-SND, arrow) /\ ContraResp(T-FST, arrow) /\ ContraResp(T-PAIR, arrow) /\ ContraResp(T-INT, arrow) /\ true /\ Inductive(T, int, []) /\ Inductive(T, times, [1; 2]) /\ Inductive(V, num, []) /\ Inductive(V, pair, []) /\ Inductive(C, fst, [1]) /\ Inductive(C, snd, [1]) /\ Inductive(C, num, []) /\ Inductive(C, pair, []) }
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
 ---- (CONSEQUENCE)
 { true } (G,I) { Inductive(V, pair, []) }

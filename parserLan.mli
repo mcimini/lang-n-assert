@@ -24,6 +24,10 @@ type token =
   | GRAMMARASSIGN
   | GAMMA
   | EXPCTX
+<<<<<<< HEAD
+  | EQUAL
+=======
+>>>>>>> 97fcb5303c6c4801b6abb4ecb2e8f3671c941f3d
   | EOF
   | EMPTYCTX
   | DOT
